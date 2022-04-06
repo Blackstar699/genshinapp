@@ -1,20 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {RootStackParamList} from './src/RootStackParamList';
+import {HomeScreen} from './src/screens/Homescreen';
+import { Params } from './src/screens/Params';
+import { Database } from './src/screens/Database';
+import { Inventory } from './src/screens/Inventory';
 
-export default function App() {
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Params"
+          component={Params}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Database"
+          component={Database}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Inventory"
+          component={Inventory}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;

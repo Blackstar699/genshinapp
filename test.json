@@ -1,0 +1,14 @@
+{
+    "data":[
+        {
+            "id":8,
+            "attributes":{
+                "createdAt":"2022-04-08T11:45:53.959Z",
+                "updatedAt":"2022-04-08T11:45:56.878Z",
+                "publishedAt":"2022-04-08T11:45:56.876Z",
+                "ID_WeaponTypes":"1",
+                "Name":"épée à une main"
+            }
+        }
+    ]
+}

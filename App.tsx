@@ -6,12 +6,17 @@ import {HomeScreen} from './src/screens/Homescreen';
 import { Params } from './src/screens/Params';
 import { Database } from './src/screens/Database';
 import { Inventory } from './src/screens/Inventory';
+import { StatusBar } from 'react-native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
   return (
     <NavigationContainer>
+      <StatusBar
+        animated={true}
+        backgroundColor="#61dafb"
+        hidden={false} />
       <Stack.Navigator screenOptions={{animation: 'none', headerShown: false}}>
         <Stack.Screen
           name="Home"

@@ -15,7 +15,7 @@ const App = () => {
     <NavigationContainer>
       <StatusBar
         animated={true}
-        backgroundColor="#61dafb"
+        backgroundColor="#282828"
         hidden={false} />
       <Stack.Navigator screenOptions={{animation: 'none', headerShown: false}}>
         <Stack.Screen

@@ -26,7 +26,7 @@ export default StyleSheet.create({
 
     bloc: {
         width: '40%',
-        aspectRatio: 1,
+        aspectRatio: 90/100,
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
@@ -35,7 +35,9 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: '100%',
-        height: '100%'
+        width: 100,
+        height: 100,
+        // aspectRatio: 1,
+        // borderRadius: 20
     }
 });

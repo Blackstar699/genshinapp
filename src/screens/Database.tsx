@@ -1,7 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import React, { FunctionComponent } from "react";
 import {RootStackParamList} from "../RootStackParamList";
-import {Text, View, ScrollView, TouchableOpacity} from "react-native";
+import {Text, View, ScrollView, TouchableOpacity, Image} from "react-native";
 import { IconButton } from "react-native-paper";
 import styles from "../styles/database";
 import { Menubar } from "./props/Menubar";
@@ -15,6 +15,7 @@ export const Database: FunctionComponent<Props> = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.content}>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
+                    <Image style={styles.image} source={{uri: "https://strapi-genshin.latabledesattentistes.fr/uploads/shenhe_icon_big_f03714c54f.png"}}/>
                     <Text>Personnages</Text>
                 </TouchableOpacity>
                 <View style={styles.bloc}>

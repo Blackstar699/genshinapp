@@ -30,7 +30,12 @@ export default StyleSheet.create({
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: '1.5%',
+        marginVertical: '3%',
         borderRadius: 20
+    },
+
+    image: {
+        width: '100%',
+        height: '100%'
     }
 });

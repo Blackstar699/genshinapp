@@ -6,8 +6,6 @@ import {HomeScreen} from './src/screens/Homescreen';
 import { Params } from './src/screens/Params';
 import { Database } from './src/screens/Database';
 import { Inventory } from './src/screens/Inventory';
-import { Menubar } from './src/screens/props/Menubar';
-import { View } from 'react-native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

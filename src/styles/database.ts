@@ -9,9 +9,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
       },
 
-    text:{
+    text: {
         color: "#fff",
         fontSize: 20,
+        paddingTop: "2%"
     },
 
     content: {
@@ -27,7 +28,7 @@ export default StyleSheet.create({
     bloc: {
         width: '40%',
         aspectRatio: 90/100,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: '#282828',
         alignItems: 'center',
         justifyContent: 'center',
         marginVertical: '3%',
@@ -35,9 +36,8 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: 100,
-        height: 100,
-        // aspectRatio: 1,
-        // borderRadius: 20
-    }
+        width: "90%",
+        aspectRatio: 1,
+        borderRadius: 20
+    },
 });

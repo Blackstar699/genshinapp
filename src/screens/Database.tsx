@@ -11,23 +11,27 @@ type Props = {
 }
 
 export const Database: FunctionComponent<Props> = ({ navigation }) => {
+    const strapi = "http://212.227.142.222:1337/uploads/format_webp/";
     return(
         <View style={styles.container}>
-            <View style={styles.content}>
+            <ScrollView contentContainerStyle={styles.content}>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
-                    <Image style={styles.image}  source={{ uri: 'https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/shenhe_icon_big_f03714c54f.png' }}/>
-                    <Text>Personnages</Text>
+                    <Image style={styles.image}  source={{ uri: strapi+'shenhe_icon_big_f03714c54f.png' }}/>
+                    <Text style={styles.text}>Personnages</Text>
                 </TouchableOpacity>
-                <View style={styles.bloc}>
-                    <Text>Armes</Text>
-                </View>
-                <View style={styles.bloc}>
-                    <Text>Artéfacts</Text>
-                </View>
-                <View style={styles.bloc}>
-                    <Text>Matériaux</Text>
-                </View>
-            </View>
+                <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
+                    <Image style={styles.image}  source={{ uri: strapi+'polar_star_icon_60d9061433.png' }}/>
+                    <Text style={styles.text}>Armes</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
+                    <Image style={styles.image}  source={{ uri: strapi+'emblem_of_severed_fate_flower_of_life_81bd35fc04.png' }}/>
+                    <Text style={styles.text}>Artéfacts</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
+                    <Image style={styles.image}  source={{ uri: strapi+'Enseignement_de_la_Resistance_f09342aed6.webp' }}/>
+                    <Text style={styles.text}>Matériaux</Text>
+                </TouchableOpacity>
+            </ScrollView>
             <Menubar navigation={navigation}/>
         </View>
     );

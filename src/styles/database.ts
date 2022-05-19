@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+    
     container: {
         flex: 1,
         width: '100%',
@@ -12,7 +13,7 @@ export default StyleSheet.create({
     text: {
         color: "#fff",
         fontSize: 20,
-        paddingTop: "2%"
+        paddingTop: "8%",
     },
 
     content: {
@@ -27,7 +28,7 @@ export default StyleSheet.create({
 
     bloc: {
         width: '40%',
-        aspectRatio: 90/100,
+        height: '46%',
         backgroundColor: '#282828',
         alignItems: 'center',
         justifyContent: 'center',
@@ -36,7 +37,7 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: "90%",
+        width: "80%",
         aspectRatio: 1,
         borderRadius: 20
     },

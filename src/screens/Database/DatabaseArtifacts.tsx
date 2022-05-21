@@ -22,8 +22,10 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
     const [isLoading, setLoading] = useState(true);
     const [artifacts, setArtifacts] = React.useState<ArtifactSets>();
 
+    let url: string = 'https://strapi-genshin.latabledesattentistes.fr/api/artifact-sets?pagination[pageSize]=100&sort[0]=Name%3Aasc';
+
     useEffect(() => {
-        fetch('https://strapi-genshin.latabledesattentistes.fr/api/artifact-sets?pagination[pageSize]=100&sort[0]=Name%3Aasc',
+        fetch(url,
             {
                 method: "GET",
                 headers: {
@@ -34,7 +36,7 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
             }
         )
           .then((response) => response.json())
-          .then((json) => setArtifacts(json))
+          .then((json) => {setArtifacts(json)})
           .catch((error) => console.error(error))
           .finally(() => setLoading(false));
     }, []);
@@ -43,23 +45,22 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
         <View style={styles.container}>
             <View style={styles.sorting}>
                 <Text style={styles.sortingText}>Rareté Max: </Text>
-                <BouncyCheckbox isChecked={check1} text='3' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck1(!check1)}}/>
-                <BouncyCheckbox isChecked={check2} text='4' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck2(!check2)}}/>
-                <BouncyCheckbox isChecked={check3} text='5' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck3(!check3)}}/>
+                <BouncyCheckbox isChecked={check1} text='3' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck1(!check1);}}/>
+                <BouncyCheckbox isChecked={check2} text='4' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck2(!check2);}}/>
+                <BouncyCheckbox isChecked={check3} text='5' fillColor='#3867D6' style={styles.checkbox} textStyle={{textDecorationLine: 'none', color: '#fff'}} useNativeDriver={false} onPress={() => {setCheck3(!check3);}}/>
             </View>
-            <FlatList data={artifacts?.data} style={styles.list} showsVerticalScrollIndicator={false} numColumns={2}
+            <FlatList style={styles.list} showsVerticalScrollIndicator={false} numColumns={2}
+                data={SortData(artifacts, check1, check2, check3)}
                 renderItem={
                     ({item}) => {
-                        if((item.attributes.RarityMax == 3 && check1) || (item.attributes.RarityMax == 4 && check2) || (item.attributes.RarityMax == 5 && check3)){
-                            return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.RarityMax)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
-                                        <TouchableOpacity onPress={() => navigation.navigate("DatabaseArtifact", {id: item.id})}>
-                                            <Image style={styles.image} source={{ uri: strapi + ImagesSplit(item.attributes.images) }}/>
-                                            <Text style={styles.text}>{item.attributes.Name}</Text>
-                                        </TouchableOpacity>
-                                    </LinearGradient>
-                        }else{
-                            return null;
-                        }
+                        return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.RarityMax)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
+                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseArtifact", {id: item.id})}>
+                                        <View style={styles.imageView}>
+                                            <Image style={styles.image} source={{ uri: strapi + ImagesSplit(item.attributes.Images) }}/>
+                                        </View>
+                                        <Text style={styles.text}>{item.attributes.Name}</Text>
+                                    </TouchableOpacity>
+                                </LinearGradient>
                     }
                 }
             />
@@ -86,6 +87,7 @@ const ImagesSplit = (images: string) => {
 
 const GradientColor = (rarity: number) => {
     let colors: Array<string>;
+
     if(rarity == 3){
         colors = ['#515676','#4A90A8'];
     }else if(rarity == 4){
@@ -97,4 +99,33 @@ const GradientColor = (rarity: number) => {
     }
 
     return colors;
+}
+
+const SortData = (datas: ArtifactSets|undefined, check1: boolean, check2: boolean, check3: boolean) => {
+
+    let sum: number = 0;
+    check1 ? sum += 1 : sum;
+    check2 ? sum += 1.5 : sum;
+    check3 ? sum += 2 : sum;
+
+    if(typeof datas !== 'undefined'){
+        switch(sum){
+            case 1:
+                return datas.data.filter(item => item.attributes.RarityMax == 3);
+            case 1.5: 
+                return datas.data.filter(item => item.attributes.RarityMax == 4);
+            case 2: 
+                return datas.data.filter(item => item.attributes.RarityMax == 5);
+            case 2.5: 
+                return datas.data.filter(item => item.attributes.RarityMax != 5);
+            case 3: 
+                return datas.data.filter(item => item.attributes.RarityMax != 4);
+            case 3.5: 
+                return datas.data.filter(item => item.attributes.RarityMax != 3);
+            case 4.5: 
+                return datas.data;
+            default:
+                return null;
+        }
+    }
 }

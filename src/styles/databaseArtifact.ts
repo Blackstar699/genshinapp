@@ -12,34 +12,61 @@ export default StyleSheet.create({
 
     content: {
         width: '100%',
-        flex: 1,
+        flexGrow: 1,
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        paddingVertical: '2%',
         justifyContent: 'space-evenly',
+    },
+
+    titlePage: {
+        width: '90%',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginHorizontal: '5%',
+    },
+
+    detailBloc: {
+        width: '90%',
+        aspectRatio: 4/1.3,
+        alignItems: 'center',
+        marginHorizontal: '5%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginVertical: '1%',
+    },
+
+    detailText: {
+        width: '75%',
+        color: "#fff",
+        fontSize: 15,
+        textAlign: 'justify',
+        textAlignVertical: "center",
     },
 
     text: {
         width: '90%',
         color: "#fff",
-        fontSize: 18,
-        paddingTop: "2%",
+        fontSize: 15,
+        marginVertical: '1%',
         marginHorizontal: '5%',
         textAlign: 'justify',
     },
 
     title: {
         width: '90%',
-        color: '#3867D6',
         fontSize: 22,
+        fontWeight: 'bold',
         textAlign: 'left',
         marginHorizontal: '5%',
+        marginTop: '3%',
+        marginBottom: '1%',
+        borderBottomWidth: 2,
     },
 
     image: {
-        width: "75%",
+        width: "25%",
         aspectRatio: 1,
-        borderRadius: 20
     },
 });

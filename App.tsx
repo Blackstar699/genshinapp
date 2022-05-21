@@ -54,7 +54,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseArtifact"
           component={DatabaseArtifact}
-          options={{headerShown: true, headerTintColor: '#fff', headerStyle: {backgroundColor: '#202020'}, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Détails Artéfact'}}
+          options={{headerShown: true, headerTintColor: '#fff', headerStyle: {backgroundColor: '#202020'}, headerTitleAlign: 'center',  headerShadowVisible: false, title: ''}}
         />
       </Stack.Navigator>
     </NavigationContainer>

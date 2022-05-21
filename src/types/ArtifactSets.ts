@@ -33,7 +33,7 @@ type attributes = {
     DescriptionCirclet:	string,
     Bonus2:	            string,
     Bonus4:	            string,
-    images:             string,
+    Images:             string,
     RarityMin:	        number,
     RarityMax:	        number,
     createdAt:	        Date,

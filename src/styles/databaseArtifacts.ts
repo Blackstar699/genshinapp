@@ -42,8 +42,14 @@ export default StyleSheet.create({
     text: {
         color: "#fff",
         fontSize: 18,
-        paddingTop: "4%",
         textAlign: 'center',
+    },
+
+    imageView: {
+        width: '100%',
+        aspectRatio: 1/0.8,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     image: {

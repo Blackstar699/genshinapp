@@ -13,7 +13,7 @@ export const Database: FunctionComponent<Props> = ({ navigation }) => {
     const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
     return(
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.content}>
+            <View style={styles.content}>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("DatabaseCharacters")}>
                     <Image style={styles.image}  source={{ uri: strapi+'shenhe_icon_big_f03714c54f.png' }}/>
                     <Text style={styles.text}>Personnages</Text>
@@ -30,7 +30,7 @@ export const Database: FunctionComponent<Props> = ({ navigation }) => {
                     <Image style={styles.image}  source={{ uri: strapi+'Enseignement_de_la_Resistance_f09342aed6.webp' }}/>
                     <Text style={styles.text}>Matériaux</Text>
                 </TouchableOpacity>
-            </ScrollView>
+            </View>
             <Menubar navigation={navigation}/>
         </View>
     );

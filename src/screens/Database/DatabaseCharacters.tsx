@@ -1,24 +1,30 @@
 import { NavigationProp } from "@react-navigation/native";
 import React, { FunctionComponent, useEffect, useState } from "react";
-import {RootStackParamList} from "../../RootStackParamList";
-import {Text, View, ScrollView, TouchableOpacity, Image} from "react-native";
-import { IconButton } from "react-native-paper";
+import { RootStackParamList } from "../../RootStackParamList";
+import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
 import styles from "../../styles/databaseCharacters";
 import { Menubar } from "../props/Menubar";
+import { Characters } from "../../types/Characters";
+import { LinearGradient } from 'expo-linear-gradient';
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'DatabaseCharacters'>;
 }
 
 export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => {
-
     const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
 
+    const [check1, setCheck1] = useState(true);
+    const [check2, setCheck2] = useState(true);
+
     const [isLoading, setLoading] = useState(true);
-    const [characters, setCharacters] = useState(null);
+    const [artifacts, setArtifacts] = React.useState<Characters>();
+
+    let url: string = 'https://strapi-genshin.latabledesattentistes.fr/api/Characters?pagination[pageSize]=100&sort[0]=Name%3Aasc';
 
     useEffect(() => {
-        fetch('https://strapi-genshin.latabledesattentistes.fr/api/artifact-sets',
+        fetch(url,
             {
                 method: "GET",
                 headers: {
@@ -28,21 +34,101 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 }
             }
         )
-          .then((response) => response.json())
-          .then((json) => setCharacters(json))
-          .catch((error) => console.error(error))
-          .finally(() => setLoading(false));
-      }, []);
+            .then((response) => response.json())
+            .then((json) => { setArtifacts(json) })
+            .catch((error) => console.error(error))
+            .finally(() => setLoading(false));
+    }, []);
 
-      console.log(characters);
-
-    return(
+    return (
         <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.content}>
-                <Text style={styles.text}>CHARACTERS</Text>
-                <Text style={styles.text}>Dev in progress...</Text>
-            </ScrollView>
-            <Menubar navigation={navigation}/>
+            <View style={styles.sorting}>
+                <Text style={styles.sortingText}>Rareté Max: </Text>
+                <BouncyCheckbox isChecked={check1} text='4' fillColor='#3867D6' style={styles.checkbox} textStyle={{ textDecorationLine: 'none', color: '#fff' }} useNativeDriver={false} onPress={() => { setCheck1(!check1); }} />
+                <BouncyCheckbox isChecked={check2} text='5' fillColor='#3867D6' style={styles.checkbox} textStyle={{ textDecorationLine: 'none', color: '#fff' }} useNativeDriver={false} onPress={() => { setCheck2(!check2); }} />
+            </View>
+            <FlatList style={styles.list} showsVerticalScrollIndicator={false} numColumns={2}
+                data={SortData(artifacts, check1, check2)}
+                renderItem={
+                    ({ item }) => {
+                        return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+                            <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id })}>
+                                <View style={styles.imageView}>
+                                    <Image style={styles.image} source={{ uri: strapi + ImagesSplit(item.attributes.images) }} />
+                                </View>
+                                <Text style={styles.text}>{item.attributes.Name}</Text>
+                            </TouchableOpacity>
+                        </LinearGradient>
+                    }
+                }
+            />
+            <Menubar navigation={navigation} />
         </View>
     );
 };
+
+
+const ImagesSplit = (images: string) => {
+    let split: Array<string>;
+    let returnString: string = '';
+
+    split = images.split(' | ');
+
+    split.forEach(element => {
+        if (element.includes('icon_big')) {
+            returnString = element;
+        }
+    });
+
+    return returnString;
+}
+
+const GradientColor = (element: string) => {
+    let colors: Array<string>;
+
+    if (element == "Electro") {
+        colors = ['#52276e', '#aF71ca'];
+    } else if (element == "Geo") {
+        colors = ['#544218', '#bfa34e'];
+    } else if (element == "Pyro") {
+        colors = ['#572224', '#bc7057'];
+    } else if (element == "Hydro") {
+        colors = ['#0e3685', '#297bbe'];
+    } else if (element == "Anemo") {
+        colors = ['#15524a', '#48bcb4'];
+    } else if (element == "Dendro") {
+        colors = ['#ffffff', '#ffffff'];
+    } else if (element == "Cryo") {
+        colors = ['#1c4d80', '#1c4d80'];
+    }
+
+    else {
+        colors = ['#282828'];
+    }
+
+    return colors;
+}
+
+const SortData = (datas: Characters | undefined, check1: boolean, check2: boolean) => {
+
+    let sum: number = 0;
+    check1 ? sum += 1 : sum;
+    check2 ? sum += 1.5 : sum;
+
+    if (typeof datas !== 'undefined') {
+        switch (sum) {
+            case 1:
+                return datas.data.filter(item => item.attributes.Rarity == 4);
+            case 1.5:
+                return datas.data.filter(item => item.attributes.Rarity == 5);
+            case 2:
+                return datas.data.filter(item => item.attributes.Rarity != 5);
+            case 2.5:
+                return datas.data.filter(item => item.attributes.Rarity != 4);
+            case 3:
+                return datas.data;
+            default:
+                return null;
+        }
+    }
+}

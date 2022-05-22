@@ -1,42 +1,72 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    
+
     container: {
         flex: 1,
         width: '100%',
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
-      },
-
-    text: {
-        color: "#fff",
-        fontSize: 20,
-        paddingTop: "4%",
     },
 
-    content: {
+    sorting: {
         width: '100%',
-        flex: 1,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: '3%',
         alignItems: 'center',
-        paddingVertical: '2%',
         justifyContent: 'center',
+    },
+
+    list: {
+        width: '100%',
+    },
+
+    listView: {
+        width: '50%',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
     },
 
     bloc: {
-        width: '40%',
-        aspectRatio: 90/100,
-        backgroundColor: '#282828',
+        width: '45%',
+        aspectRatio: 9 / 10,
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: '3%',
-        borderRadius: 20
+        marginVertical: '1.5%',
+        marginLeft: '3.33%',
+        borderRadius: 20,
+    },
+
+    text: {
+        color: "#fff",
+        fontSize: 18,
+        textAlign: 'center',
+        //marginTop: "10%"
+    },
+
+    imageView: {
+        width: '100%',
+        aspectRatio: 1 / 0.8,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     image: {
-        width: "80%",
+        width: "75%",
         aspectRatio: 1,
         borderRadius: 20
+    },
+
+    sortingText: {
+        color: '#fff',
+        fontSize: 18,
+        textAlign: 'center',
+        marginRight: '2%',
+    },
+
+    checkbox: {
+        marginRight: '5%',
     },
 });

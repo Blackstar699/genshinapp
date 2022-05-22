@@ -5,5 +5,6 @@ export type RootStackParamList = {
     Inventory: undefined;
     DatabaseCharacters: undefined;
     DatabaseArtifacts: undefined;
-    DatabaseArtifact: {id: string};
+    DatabaseArtifact: { id: string };
+    DatabaseCharacter: { id: string };
 };

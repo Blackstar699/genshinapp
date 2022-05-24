@@ -40,7 +40,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                 <Text style={[styles.titlePage, { color: color }]}>{character?.data.attributes.Name}</Text>
-                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_gacha_splash.png' }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_gacha_splash.png' }} />
                 <Text style={styles.quote}>{character?.data.attributes.Description}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Identité</Text>
                 <Text style={styles.quote}>Element :  {character?.data.attributes.Element}</Text>
@@ -49,8 +49,8 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                 <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Histoire</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
-                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_gacha_card.png' }} />
-                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_icon_side.png' }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_gacha_card.png' }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_icon_side.png' }} />
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Elévation</Text>

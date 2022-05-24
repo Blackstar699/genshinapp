@@ -19,7 +19,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
     const [check2, setCheck2] = useState(true);
 
     const [isLoading, setLoading] = useState(true);
-    const [artifacts, setArtifacts] = React.useState<Characters>();
+    const [characters, setCharacters] = React.useState<Characters>();
 
     let url: string = 'https://strapi-genshin.latabledesattentistes.fr/api/Characters?pagination[pageSize]=100&sort[0]=Name%3Aasc';
 
@@ -35,7 +35,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
             }
         )
             .then((response) => response.json())
-            .then((json) => { setArtifacts(json) })
+            .then((json) => { setCharacters(json) })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false));
     }, []);
@@ -48,13 +48,13 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 <BouncyCheckbox isChecked={check2} text='5' fillColor='#3867D6' style={styles.checkbox} textStyle={{ textDecorationLine: 'none', color: '#fff' }} useNativeDriver={false} onPress={() => { setCheck2(!check2); }} />
             </View>
             <FlatList style={styles.list} showsVerticalScrollIndicator={false} numColumns={2}
-                data={SortData(artifacts, check1, check2)}
+                data={SortData(characters, check1, check2)}
                 renderItem={
                     ({ item }) => {
                         return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
                             <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id })}>
                                 <View style={styles.imageView}>
-                                    <Image style={styles.image} source={{ uri: images + item.attributes.images + '_icon_big.png' }} />
+                                    <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_icon_big.png' }} />
                                 </View>
                                 <Text style={styles.text}>{item.attributes.Name}</Text>
                             </TouchableOpacity>
@@ -83,7 +83,7 @@ const GradientColor = (element: string) => {
     } else if (element == "Dendro") {
         colors = ['#ffffff', '#ffffff'];
     } else if (element == "Cryo") {
-        colors = ['#1c4d80', '#1c4d80'];
+        colors = ['#347a93', '#72d0eb'];
     }
 
     else {
@@ -105,11 +105,7 @@ const SortData = (datas: Characters | undefined, check1: boolean, check2: boolea
                 return datas.data.filter(item => item.attributes.Rarity == 4);
             case 1.5:
                 return datas.data.filter(item => item.attributes.Rarity == 5);
-            case 2:
-                return datas.data.filter(item => item.attributes.Rarity != 5);
             case 2.5:
-                return datas.data.filter(item => item.attributes.Rarity != 4);
-            case 3:
                 return datas.data;
             default:
                 return null;

@@ -20,7 +20,7 @@ export type Character = {
 type attributes = {
     ID_Characters: string,
     Name: string,
-    images: string,
+    Images: string,
     Element: string,
     WeaponType: number,
     Rarity: number,

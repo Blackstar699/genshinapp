@@ -40,11 +40,20 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                 <Text style={[styles.titlePage, { color: color }]}>{character?.data.attributes.Name}</Text>
-                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'raiden_gacha_splash') }} />
+                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'gacha_splash') }} />
                 <Text style={styles.quote}>{character?.data.attributes.Description}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Identité</Text>
+                <Text style={styles.quote}>Element :  {character?.data.attributes.Element}</Text>
+                <Text style={styles.quote}>Rareté : {character?.data.attributes.Rarity}</Text>
+                <Text style={styles.quote}>Sexe : {character?.data.attributes.Gender}</Text>
+                <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Histoire</Text>
-
+                <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
+                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'gacha_card') }} />
+                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'icon_side') }} />
+                <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
+                <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>
+                <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Elévation</Text>
 
             </ScrollView>
             <Menubar navigation={navigation} />

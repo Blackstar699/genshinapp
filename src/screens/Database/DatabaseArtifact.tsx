@@ -49,27 +49,27 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
                 <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Pièces</Text>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'flower_of_life.png'}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + '_flower_of_life.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Flower}{'\n'}{artifact?.data.attributes.DescriptionFlower}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'plume_of_death.png'}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + '_plume_of_death.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Plume}{'\n'}{artifact?.data.attributes.DescriptionPlume}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'sands_of_eon.png'}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + '_sands_of_eon.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Sand}{'\n'}{artifact?.data.attributes.DescriptionSand}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'goblet_of_eonothem.png'}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + '_goblet_of_eonothem.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Goblet}{'\n'}{artifact?.data.attributes.DescriptionGoblet}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'circlet_of_logos.png'}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + '_circlet_of_logos.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Circlet}{'\n'}{artifact?.data.attributes.DescriptionCirclet}</Text>
                 </View>
 

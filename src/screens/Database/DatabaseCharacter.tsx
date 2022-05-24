@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
-    const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
+    const images = "https://images.latabledesattentistes.fr/genshin/";
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -40,7 +40,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         <View style={styles.container}>
             <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
                 <Text style={[styles.titlePage, { color: color }]}>{character?.data.attributes.Name}</Text>
-                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'gacha_splash') }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_gacha_splash.png' }} />
                 <Text style={styles.quote}>{character?.data.attributes.Description}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Identité</Text>
                 <Text style={styles.quote}>Element :  {character?.data.attributes.Element}</Text>
@@ -49,8 +49,8 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                 <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Histoire</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
-                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'gacha_card') }} />
-                <Image style={styles.characterpreview} source={{ uri: strapi + ImagesSplit(typeof character === 'undefined' ? '' : character.data.attributes.images, 'icon_side') }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_gacha_card.png' }} />
+                <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.images + '_icon_side.png' }} />
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Elévation</Text>
@@ -60,22 +60,6 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         </View>
     );
 };
-
-
-const ImagesSplit = (images: string, pattern: string) => {
-    let split: Array<string>;
-    let returnString: string = '';
-
-    split = images.split(' | ');
-
-    split.forEach(element => {
-        if (element.includes(pattern)) {
-            returnString = element;
-        }
-    });
-
-    return returnString;
-}
 
 const GetColor = (element: string) => {
     let colors: string;

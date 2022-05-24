@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => {
-    const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
+    const images = "https://images.latabledesattentistes.fr/genshin/";
 
     const [check1, setCheck1] = useState(true);
     const [check2, setCheck2] = useState(true);
@@ -54,7 +54,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                         return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
                             <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id })}>
                                 <View style={styles.imageView}>
-                                    <Image style={styles.image} source={{ uri: strapi + ImagesSplit(item.attributes.images) }} />
+                                    <Image style={styles.image} source={{ uri: images + item.attributes.images + '_icon_big.png' }} />
                                 </View>
                                 <Text style={styles.text}>{item.attributes.Name}</Text>
                             </TouchableOpacity>
@@ -66,22 +66,6 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
         </View>
     );
 };
-
-
-const ImagesSplit = (images: string) => {
-    let split: Array<string>;
-    let returnString: string = '';
-
-    split = images.split(' | ');
-
-    split.forEach(element => {
-        if (element.includes('icon_big')) {
-            returnString = element;
-        }
-    });
-
-    return returnString;
-}
 
 const GradientColor = (element: string) => {
     let colors: Array<string>;

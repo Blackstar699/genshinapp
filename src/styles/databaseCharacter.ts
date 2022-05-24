@@ -42,6 +42,9 @@ export default StyleSheet.create({
         opacity: 0.8,
         aspectRatio: 1,
     },
+    gallery: {
+        height: "100%"
+    },
 
     detailText: {
         width: '75%',

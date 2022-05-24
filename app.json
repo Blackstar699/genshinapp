@@ -2,7 +2,7 @@
   "expo": {
     "name": "genshin-app",
     "slug": "genshin-app",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -24,7 +24,8 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.attentistes.genshinapp"
+      "package": "com.attentistes.pocketimpact",
+      "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"

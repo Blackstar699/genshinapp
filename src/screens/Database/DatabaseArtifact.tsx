@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
-    const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
+    const images = "https://images.latabledesattentistes.fr/genshin/";
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -49,27 +49,27 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
                 <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Pièces</Text>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: strapi + ImagesSplit(typeof artifact === 'undefined' ? '' : artifact.data.attributes.Images, 'flower_of_life')}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'flower_of_life.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Flower}{'\n'}{artifact?.data.attributes.DescriptionFlower}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: strapi + ImagesSplit(typeof artifact === 'undefined' ? '' : artifact.data.attributes.Images, 'plume_of_death')}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'plume_of_death.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Plume}{'\n'}{artifact?.data.attributes.DescriptionPlume}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: strapi + ImagesSplit(typeof artifact === 'undefined' ? '' : artifact.data.attributes.Images, 'sands_of_eon')}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'sands_of_eon.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Sand}{'\n'}{artifact?.data.attributes.DescriptionSand}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: strapi + ImagesSplit(typeof artifact === 'undefined' ? '' : artifact.data.attributes.Images, 'goblet_of_eonothem')}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'goblet_of_eonothem.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Goblet}{'\n'}{artifact?.data.attributes.DescriptionGoblet}</Text>
                 </View>
 
                 <View style={styles.detailBloc}>
-                    <Image style={styles.image} source={{uri: strapi + ImagesSplit(typeof artifact === 'undefined' ? '' : artifact.data.attributes.Images, 'circlet_of_logos')}}/>
+                    <Image style={styles.image} source={{uri: images + artifact?.data.attributes.Images + 'circlet_of_logos.png'}}/>
                     <Text style={styles.detailText}>{artifact?.data.attributes.Circlet}{'\n'}{artifact?.data.attributes.DescriptionCirclet}</Text>
                 </View>
 
@@ -78,22 +78,6 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
         </View>
     );
 };
-
-
-const ImagesSplit = (images: string, pattern: string) => {
-    let split: Array<string>;
-    let returnString: string = '';
-
-    split = images.split(' | ');
-
-    split.forEach(element => {
-        if(element.includes(pattern)){
-            returnString = element;
-        }
-    });
-
-    return returnString;
-}
 
 const GetColor = (rarity: number) => {
     let colors: string;

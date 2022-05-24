@@ -10,24 +10,24 @@ type Props = {
 }
 
 export const Database: FunctionComponent<Props> = ({ navigation }) => {
-    const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
+    const images = "https://images.latabledesattentistes.fr/genshin/";
     return(
         <View style={styles.container}>
             <View style={styles.content}>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("DatabaseCharacters")}>
-                    <Image style={styles.image}  source={{ uri: strapi+'shenhe_icon_big_f03714c54f.png' }}/>
+                    <Image style={styles.image}  source={{ uri: images+'shenhe_icon_big.png' }}/>
                     <Text style={styles.text}>Personnages</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
-                    <Image style={styles.image}  source={{ uri: strapi+'polar_star_icon_60d9061433.png' }}/>
+                    <Image style={styles.image}  source={{ uri: images+'polar_star.png' }}/>
                     <Text style={styles.text}>Armes</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("DatabaseArtifacts")}>
-                    <Image style={styles.image}  source={{ uri: strapi+'emblem_of_severed_fate_flower_of_life_81bd35fc04.png' }}/>
+                    <Image style={styles.image}  source={{ uri: images+'emblem_of_severed_fate_flower_of_life.png' }}/>
                     <Text style={styles.text}>Artéfacts</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
-                    <Image style={styles.image}  source={{ uri: strapi+'Enseignement_de_la_Resistance_f09342aed6.webp' }}/>
+                    <Image style={styles.image}  source={{ uri: images+'philosophies_of_light.png' }}/>
                     <Text style={styles.text}>Matériaux</Text>
                 </TouchableOpacity>
             </View>

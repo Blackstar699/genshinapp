@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
-    const strapi = "https://strapi-genshin.latabledesattentistes.fr/uploads/format_webp/";
+    const images = "https://images.latabledesattentistes.fr/genshin/";
 
     const [check1, setCheck1] = useState(true);
     const [check2, setCheck2] = useState(true);
@@ -56,7 +56,7 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
                         return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.RarityMax)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
                                     <TouchableOpacity onPress={() => navigation.navigate("DatabaseArtifact", {id: item.id})}>
                                         <View style={styles.imageView}>
-                                            <Image style={styles.image} source={{ uri: strapi + ImagesSplit(item.attributes.Images) }}/>
+                                            <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_goblet_of_eonothem.png' }}/>
                                         </View>
                                         <Text style={styles.text}>{item.attributes.Name}</Text>
                                     </TouchableOpacity>
@@ -68,22 +68,6 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
         </View>
     );
 };
-
-
-const ImagesSplit = (images: string) => {
-    let split: Array<string>;
-    let returnString: string = '';
-
-    split = images.split(' | ');
-
-    split.forEach(element => {
-        if(element.includes('goblet_of_eonothem')){
-            returnString = element;
-        }
-    });
-
-    return returnString;
-}
 
 const GradientColor = (rarity: number) => {
     let colors: Array<string>;

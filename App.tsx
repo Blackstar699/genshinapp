@@ -8,9 +8,10 @@ import { Params } from './src/screens/Params';
 import { Database } from './src/screens/Database';
 import { Inventory } from './src/screens/Inventory';
 import { DatabaseCharacters } from './src/screens/Database/DatabaseCharacters';
+import { DatabaseCharacter } from './src/screens/Database/DatabaseCharacter';
 import { DatabaseArtifacts } from './src/screens/Database/DatabaseArtifacts';
 import { DatabaseArtifact } from './src/screens/Database/DatabaseArtifact';
-import { DatabaseCharacter } from './src/screens/Database/DatabaseCharacter';
+import { DatabaseMaterials } from './src/screens/Database/DatabaseMaterials';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -59,6 +60,16 @@ const App = () => {
         />
         <Stack.Screen
           name="DatabaseArtifact"
+          component={DatabaseArtifact}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
+        />
+        <Stack.Screen
+          name="DatabaseMaterials"
+          component={DatabaseMaterials}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Matériaux' }}
+        />
+        <Stack.Screen
+          name="DatabaseMaterial"
           component={DatabaseArtifact}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
         />

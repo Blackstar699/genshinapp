@@ -93,22 +93,14 @@ const GradientColor = (element: string) => {
     return colors;
 }
 
-const SortData = (datas: Characters | undefined, check1: boolean, check2: boolean) => {
+const SortData = (datas: Characters|undefined, check1: boolean, check2: boolean) => {
 
-    let sum: number = 0;
-    check1 ? sum += 1 : sum;
-    check2 ? sum += 1.5 : sum;
+    let rarity: Array<number> = [];
+
+    check1 ? rarity.push(4) : null;
+    check2 ? rarity.push(5) : null;
 
     if (typeof datas !== 'undefined') {
-        switch (sum) {
-            case 1:
-                return datas.data.filter(item => item.attributes.Rarity == 4);
-            case 1.5:
-                return datas.data.filter(item => item.attributes.Rarity == 5);
-            case 2.5:
-                return datas.data;
-            default:
-                return null;
-        }
+        return datas.data.filter(item => rarity.includes(item.attributes.Rarity));
     }
 }

@@ -26,7 +26,7 @@ export const Database: FunctionComponent<Props> = ({ navigation }) => {
                     <Image style={styles.image}  source={{ uri: images+'emblem_of_severed_fate_flower_of_life.png' }}/>
                     <Text style={styles.text}>Artéfacts</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("Inventory")}>
+                <TouchableOpacity style={styles.bloc} onPress={() => navigation.navigate("DatabaseMaterials")}>
                     <Image style={styles.image}  source={{ uri: images+'philosophies_of_light.png' }}/>
                     <Text style={styles.text}>Matériaux</Text>
                 </TouchableOpacity>

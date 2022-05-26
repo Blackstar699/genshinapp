@@ -58,7 +58,7 @@ export const DatabaseMaterials: FunctionComponent<Props> = ({ navigation }) => {
                 renderItem={
                     ({item}) => {
                         return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Rarity)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
-                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseArtifact", {id: item.id})}>
+                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseMaterial", {id: item.id})}>
                                         <View style={styles.imageView}>
                                             <Image style={styles.image} source={{ uri: images + item.attributes.Images + '.png' }}/>
                                         </View>

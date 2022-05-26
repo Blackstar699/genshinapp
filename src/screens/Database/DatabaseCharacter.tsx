@@ -6,7 +6,6 @@ import styles from "../../styles/databaseCharacter";
 import { Menubar } from "../props/Menubar";
 import { Character } from "../../types/Characters";
 import { Constellations } from "../../types/Constellations";
-
 type Props = {
     route: RouteProp<RootStackParamList, 'DatabaseCharacter'>;
 }
@@ -22,6 +21,8 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
     const apiPrefix = 'https://strapi-genshin.latabledesattentistes.fr/api';
     const apiCharacterPrefix = '/Characters';
     const apiConstellationPrefix = '/constellations?filters[ID_Constellations][$eq]=';
+    const apiWeaponTypesPrefix = '/weapon-types?filters[ID_WeaponTypes][$eq]='
+
     const headers = {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
@@ -34,9 +35,11 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                 setCharacter(json1);
 
                 return fetch(`${apiPrefix}${apiConstellationPrefix}${json1.data.attributes.Constellations}`, { headers })
+
             })
             .then((response) => response.json())
             .then((json2) => setConstellation(json2))
+
             .catch((error) => console.error(error))
             .finally(() => setLoading(false))
     }, [])
@@ -55,15 +58,14 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                     <Text style={styles.quote}>Rareté : {character?.data.attributes.Rarity}</Text>
                     <Text style={styles.quote}>Sexe : {character?.data.attributes.Gender}</Text>
                     <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
-                    <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Histoire</Text>
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
-                    <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_gacha_card.png' }} />
+                    <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_portrait.png' }} />
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
 
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>
                     <Image style={styles.Constel} source={{ uri: images + character?.data.attributes.Images + '_constellation.png' }} />
                     <View style={styles.detailBloc}>
-                        <Image style={styles.image} source={{ uri: images + character?.data.attributes.Images + '_constellation_1.png' }} />
+                        <Image style={styles.imageconstellation} source={{ uri: images + character?.data.attributes.Images + '_constellation_1.png' }} />
                         <Text style={styles.detailText}>{constellation?.data[0].attributes.C1}{'\n'}{constellation?.data[0].attributes.DescriptionC1}</Text>
                     </View>
 

@@ -37,15 +37,17 @@ export default StyleSheet.create({
         marginVertical: '1%',
     },
     characterpreview: {
-        width: "120%",
-        resizeMode: "cover",
+        width: "50%",
         opacity: 0.8,
-        aspectRatio: 1,
+        aspectRatio: 1 / 2,
     },
     gallery: {
         height: "100%"
     },
-
+    Constel: {
+        width: "50%",
+        aspectRatio: 1 / 2,
+    },
     detailText: {
         width: '75%',
         color: "#fff",
@@ -83,6 +85,10 @@ export default StyleSheet.create({
 
     image: {
         width: "25%",
+        aspectRatio: 1,
+    },
+    imageconstellation: {
+        width: "20%",
         aspectRatio: 1,
     },
 });

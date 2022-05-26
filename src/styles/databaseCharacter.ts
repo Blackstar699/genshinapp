@@ -29,36 +29,37 @@ export default StyleSheet.create({
 
     detailBloc: {
         width: '90%',
-        aspectRatio: 4 / 1.3,
         alignItems: 'center',
-        marginHorizontal: '5%',
+        marginHorizontal: '1%',
+        marginVertical: '1%',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginVertical: '1%',
     },
+
     characterpreview: {
-        width: "50%",
-        opacity: 0.8,
-        aspectRatio: 1 / 2,
+        width: "100%",
+        aspectRatio: 1 / 1,
     },
     gallery: {
-        height: "100%"
+        width: "60%",
+        aspectRatio: 1 / 2,
     },
     Constel: {
         width: "50%",
-        aspectRatio: 1 / 2,
+        aspectRatio: 1 / 1,
     },
     detailText: {
         width: '75%',
         color: "#fff",
-        fontSize: 15,
+        fontSize: 11,
+        marginLeft: '7%',
         textAlign: 'justify',
         textAlignVertical: "center",
     },
     quote: {
         width: '90%',
         color: "#7F7F7F",
-        fontSize: 9,
+        fontSize: 12,
         textAlign: 'center',
 
     },
@@ -66,8 +67,9 @@ export default StyleSheet.create({
         width: '90%',
         color: "#fff",
         fontSize: 15,
-        marginVertical: '1%',
+        marginVertical: '5%',
         marginHorizontal: '5%',
+        marginRight: '10%',
         textAlign: 'justify',
 
     },
@@ -88,7 +90,7 @@ export default StyleSheet.create({
         aspectRatio: 1,
     },
     imageconstellation: {
-        width: "20%",
-        aspectRatio: 1,
+        width: "15%",
+        aspectRatio: 1 / 1,
     },
 });

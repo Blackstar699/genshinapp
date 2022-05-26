@@ -12,6 +12,7 @@ import { DatabaseCharacter } from './src/screens/Database/DatabaseCharacter';
 import { DatabaseArtifacts } from './src/screens/Database/DatabaseArtifacts';
 import { DatabaseArtifact } from './src/screens/Database/DatabaseArtifact';
 import { DatabaseMaterials } from './src/screens/Database/DatabaseMaterials';
+import { DatabaseMaterial } from './src/screens/Database/DatabaseMaterial';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -70,7 +71,7 @@ const App = () => {
         />
         <Stack.Screen
           name="DatabaseMaterial"
-          component={DatabaseArtifact}
+          component={DatabaseMaterial}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
         />
       </Stack.Navigator>

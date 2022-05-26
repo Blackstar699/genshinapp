@@ -60,6 +60,6 @@ export default StyleSheet.create({
     },
 
     checkbox: {
-        marginRight: '4%',
+        marginRight: '2%',
     },
 });

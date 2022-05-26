@@ -7,6 +7,7 @@ import { HomeScreen } from './src/screens/Homescreen';
 import { Params } from './src/screens/Params';
 import { Database } from './src/screens/Database';
 import { Inventory } from './src/screens/Inventory';
+import { Login } from './src/screens/Login';
 import { DatabaseCharacters } from './src/screens/Database/DatabaseCharacters';
 import { DatabaseCharacter } from './src/screens/Database/DatabaseCharacter';
 import { DatabaseArtifacts } from './src/screens/Database/DatabaseArtifacts';
@@ -42,6 +43,11 @@ const App = () => {
         <Stack.Screen
           name="Inventory"
           component={Inventory}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
           options={{ headerShown: false }}
         />
         <Stack.Screen

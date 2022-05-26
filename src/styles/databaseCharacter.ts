@@ -41,7 +41,8 @@ export default StyleSheet.create({
         aspectRatio: 1 / 1,
     },
     gallery: {
-        height: "100%"
+        width: "60%",
+        aspectRatio: 1 / 2,
     },
     Constel: {
         width: "50%",

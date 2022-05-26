@@ -59,7 +59,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                     <Text style={styles.quote}>Sexe : {character?.data.attributes.Gender}</Text>
                     <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
-                    <Image style={styles.characterpreview} source={{ uri: images + character?.data.attributes.Images + '_portrait.png' }} />
+                    <Image style={styles.gallery} source={{ uri: images + character?.data.attributes.Images + '_portrait.png' }} />
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
 
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>

@@ -1,22 +1,17 @@
 import { NavigationProp } from "@react-navigation/native";
 import {RootStackParamList} from "../RootStackParamList";
 import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
-import {FunctionComponent, useState} from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, {FunctionComponent, useState} from "react";
 import styles from '../styles/login'
-//import {login} from "../types/User";
-import {User} from "../types/User";
+import {User, LoginResponse} from "../types/User";
 import { Menubar } from "./props/Menubar";
-
-type LoginResponse = {
-  jwt: string
-  user: User
-}
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Login'>;
 }
 
-export const login = (login: string, password: string): Promise<User> => {
+const login = (login: string, password: string): Promise<LoginResponse> => {
   return fetch("https://strapi-genshin.latabledesattentistes.fr/api/auth/local", {
     headers: {
       "Content-Type": "application/json"
@@ -28,26 +23,41 @@ export const login = (login: string, password: string): Promise<User> => {
     })
   })
     .then(response => response.json())
-    .then((data: LoginResponse) => data.user);
+    .then((data: LoginResponse) => data);
 }
 
 export const Login: FunctionComponent<Props> = ({ navigation }) => {
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
+
+    const [userdata, setUserdata] = React.useState<LoginResponse>();
+
     const onPressCallback = () => {
-    login(identifier, password)
-    .then((user) => {
-        console.log(user.name);
-        Alert.alert(`You're connected with user ${user.name}`)
-    })}
+        login(identifier, password)
+        .then((data) => {
+            setUserdata(data);
+            storeData(data);
+            navigation.navigate('Params');
+        })
+    }
+
+    const storeData = async (userdata: LoginResponse) => {
+        try {
+          const jsonValue = JSON.stringify(userdata);
+          await AsyncStorage.setItem('@UserData', jsonValue);
+          await AsyncStorage.setItem('@test', 'testtttttt')
+        } catch (e) {
+          // saving error
+        }
+    }
 
     return(
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text>Email</Text>
-                <TextInput value={identifier} onChangeText={(value) => setIdentifier(value)} />
-                <Text>Mot de passe</Text>
-                <TextInput value={password} onChangeText={(value) => setPassword(value)} />
+                <Text style={styles.text}>Email</Text>
+                <TextInput style={styles.textInput} value={identifier} onChangeText={(value) => setIdentifier(value)} />
+                <Text style={styles.text}>Mot de passe</Text>
+                <TextInput secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(value) => setPassword(value)} />
                 <Button onPress={onPressCallback} title="Sign in" />
             </View>
             <Menubar navigation={navigation}/>

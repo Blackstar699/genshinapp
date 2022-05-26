@@ -54,6 +54,13 @@ export default StyleSheet.create({
         textAlign: 'justify',
     },
 
+    textInput: {
+        color: '#fff',
+        borderWidth: 1,
+        borderColor: '#fff',
+        width: '50%',
+    },
+
     title: {
         width: '90%',
         fontSize: 22,

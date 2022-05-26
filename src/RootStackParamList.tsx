@@ -3,6 +3,7 @@ export type RootStackParamList = {
     Params: undefined;
     Database: undefined;
     Inventory: undefined;
+    Login: undefined;
     DatabaseCharacters: undefined;
     DatabaseCharacter: { id: string };
     DatabaseArtifacts: undefined;

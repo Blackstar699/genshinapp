@@ -9,7 +9,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 type Props = {
-    navigation: NavigationProp<RootStackParamList, 'DatabaseArtifacts'>;
+    navigation: NavigationProp<RootStackParamList, 'DatabaseMaterials'>;
 }
 
 export const DatabaseMaterials: FunctionComponent<Props> = ({ navigation }) => {

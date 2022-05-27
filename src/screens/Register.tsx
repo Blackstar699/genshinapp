@@ -3,22 +3,23 @@ import {RootStackParamList} from "../RootStackParamList";
 import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {FunctionComponent, useState} from "react";
-import styles from '../styles/login'
+import styles from '../styles/register'
 import {User, LoginResponse} from "../types/User";
 import { Menubar } from "./props/Menubar";
 
 type Props = {
-    navigation: NavigationProp<RootStackParamList, 'Login'>;
+    navigation: NavigationProp<RootStackParamList, 'Register'>;
 }
 
-const login = (login: string, password: string): Promise<LoginResponse> => {
-  return fetch("https://strapi-genshin.latabledesattentistes.fr/api/auth/local", {
+const register = (email: string, pseudo: string, password: string): Promise<LoginResponse> => {
+  return fetch("https://strapi-genshin.latabledesattentistes.fr/api/auth/local/register", {
     headers: {
       "Content-Type": "application/json"
     },
     method: "POST",
     body: JSON.stringify({
-      "identifier": login,
+      "email": email,
+      "username": pseudo,
       "password": password
     })
   })
@@ -26,16 +27,30 @@ const login = (login: string, password: string): Promise<LoginResponse> => {
     .then((data: LoginResponse) => data);
 }
 
-export const Login: FunctionComponent<Props> = ({ navigation }) => {
+export const Register: FunctionComponent<Props> = ({ navigation }) => {
     const [identifier, setIdentifier] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [verifyPassword, setVerifyPassword] = useState("");
+
+    const [alert, setAlert] = useState("");
 
     const onPressCallback = () => {
-        login(identifier, password)
+      if(password === verifyPassword && password.length >= 6 && username.length >= 3){
+        register(identifier, username, password)
         .then((data) => {
             storeData(data);
             navigation.navigate('Home');
         })
+      }else{
+        if(username.length < 3){
+          setAlert("le pseudo doit faire au minimum 3 caractères");
+        }else if(password !== verifyPassword){
+          setAlert("les mots de passe entrés ne correspondent pas");
+        }else if(password.length < 6){
+          setAlert("le mot de passe doit faire au minimum 6 caractères");
+        }
+      }
     }
 
     const storeData = async (userdata: LoginResponse) => {
@@ -52,9 +67,14 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
             <View style={styles.content}>
                 <Text style={styles.text}>Email</Text>
                 <TextInput style={styles.textInput} value={identifier} onChangeText={(value) => setIdentifier(value)} />
+                <Text style={styles.text}>Pseudo</Text>
+                <TextInput style={styles.textInput} value={username} onChangeText={(value) => setUsername(value)}/>
                 <Text style={styles.text}>Mot de passe</Text>
                 <TextInput secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(value) => setPassword(value)} />
-                <Button color={'#3867D6'} onPress={onPressCallback} title="Connexion" />
+                <Text style={styles.text}>Confirmation mot de passe</Text>
+                <TextInput secureTextEntry={true} style={styles.textInput} value={verifyPassword} onChangeText={(value) => setVerifyPassword(value)}/>
+                <Text style={styles.textAlert}>{alert}</Text>
+                <Button color={'#3867D6'} onPress={onPressCallback} title='Créer un compte' />
             </View>
             <Menubar navigation={navigation}/>
         </View>

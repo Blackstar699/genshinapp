@@ -1,7 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import React, { FunctionComponent, useEffect, useState } from "react";
 import {RootStackParamList} from "../RootStackParamList";
-import {Text, View, Button} from "react-native";
+import {Text, View, Button, TouchableOpacity} from "react-native";
 import styles from "../styles/params";
 import { Menubar } from "./props/Menubar";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,12 +30,23 @@ export const Params: FunctionComponent<Props> = ({ navigation }) => {
                 {
                     isLogged ?
                     <View style={styles.content}>
-                        <Text>Connecté en tant que {userdata?.user.username}</Text>
-                        <Button onPress={() => {AsyncStorage.removeItem('@UserData'); navigation.navigate('Params')}} title='Sign out'/>
+                        <View style={styles.loginBloc}>
+                            <Text style={styles.username}>{userdata?.user.username}</Text>
+                            <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false)}}>
+                                <Text style={styles.buttonText}>Déconnexion</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View> 
                     :
                     <View style={styles.content}>
-                        <Button onPress={() => navigation.navigate('Login')} title='Sign in'/>
+                        <View style={styles.loginBloc}>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
+                                <Text style={styles.buttonText}>Se connecter</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Register')}>
+                                <Text style={styles.buttonText}>Créer un compte</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 }
             <Menubar navigation={navigation}/>

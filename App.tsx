@@ -8,6 +8,7 @@ import { Params } from './src/screens/Params';
 import { Database } from './src/screens/Database';
 import { Inventory } from './src/screens/Inventory';
 import { Login } from './src/screens/Login';
+import { Register } from './src/screens/Register';
 import { DatabaseCharacters } from './src/screens/Database/DatabaseCharacters';
 import { DatabaseCharacter } from './src/screens/Database/DatabaseCharacter';
 import { DatabaseArtifacts } from './src/screens/Database/DatabaseArtifacts';
@@ -33,7 +34,7 @@ const App = () => {
         <Stack.Screen
           name="Params"
           component={Params}
-          options={{ headerShown: false }}
+          options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Paramètres'}}
         />
         <Stack.Screen
           name="Database"
@@ -48,7 +49,12 @@ const App = () => {
         <Stack.Screen
           name="Login"
           component={Login}
-          options={{ headerShown: false }}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Connexion'}}
+        />
+        <Stack.Screen
+          name="Register"
+          component={Register}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Créer un compte'}}
         />
         <Stack.Screen
           name="DatabaseCharacters"
@@ -58,7 +64,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseCharacter"
           component={DatabaseCharacter}
-          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
           name="DatabaseArtifacts"
@@ -68,7 +74,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseArtifact"
           component={DatabaseArtifact}
-          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
           name="DatabaseMaterials"
@@ -78,7 +84,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseMaterial"
           component={DatabaseMaterial}
-          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

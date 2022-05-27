@@ -1,21 +1,55 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
+
     container: {
         flex: 1,
+        width: '100%',
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
       },
 
-    text:{
-        color: "#fff",
-        fontSize: 20,
+    content: {
+        width: '100%',
+        flexGrow: 1,
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
     },
 
-    content: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+    loginBloc: {
+        width: '80%',
+        marginHorizontal: '10%',
+        marginVertical: '2%',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+
+    button: {
+        width: '40%',
+        backgroundColor: '#3867D6',
+        paddingVertical: '1%',
+        borderRadius: 10,
+    },
+
+    username: {
+        width: '40%',
+        paddingVertical: '1%',
+        color: "#fff",
+        fontSize: 15,
+        textAlign: 'center',
+    },
+
+    buttonText: {
+        color: "#fff",
+        fontSize: 15,
+        textAlign: 'center',
+    },
+
+    text:{
+        color: "#fff",
+        fontSize: 15,
     },
 });

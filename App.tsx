@@ -64,7 +64,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseCharacter"
           component={DatabaseCharacter}
-          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
           name="DatabaseArtifacts"
@@ -74,7 +74,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseArtifact"
           component={DatabaseArtifact}
-          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
           name="DatabaseMaterials"
@@ -84,7 +84,7 @@ const App = () => {
         <Stack.Screen
           name="DatabaseMaterial"
           component={DatabaseMaterial}
-          options={{ headerShown: true, headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

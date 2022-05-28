@@ -33,14 +33,18 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
     const [password, setPassword] = useState("");
     const [verifyPassword, setVerifyPassword] = useState("");
 
-    const [alert, setAlert] = useState("");
+    const [alert, setAlert] = useState(" ");
 
     const onPressCallback = () => {
       if(password === verifyPassword && password.length >= 6 && username.length >= 3){
         register(identifier, username, password)
         .then((data) => {
+          if(data.hasOwnProperty('jwt')){
             storeData(data);
             navigation.navigate('Home');
+          }else{
+            setAlert('Erreur');
+          }
         })
       }else{
         if(username.length < 3){

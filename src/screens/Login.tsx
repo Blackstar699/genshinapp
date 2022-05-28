@@ -30,11 +30,17 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
     const [identifier, setIdentifier] = useState("");
     const [password, setPassword] = useState("");
 
+    const [alert, setAlert] = useState(" ");
+
     const onPressCallback = () => {
         login(identifier, password)
         .then((data) => {
+          if(data.hasOwnProperty('jwt')){
             storeData(data);
             navigation.navigate('Home');
+          }else{
+            setAlert('Erreur, vérifiez votre email et votre mot de passe');
+          }
         })
     }
 
@@ -54,6 +60,7 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
                 <TextInput style={styles.textInput} value={identifier} onChangeText={(value) => setIdentifier(value)} />
                 <Text style={styles.text}>Mot de passe</Text>
                 <TextInput secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(value) => setPassword(value)} />
+                <Text style={styles.textAlert}>{alert}</Text>
                 <Button color={'#3867D6'} onPress={onPressCallback} title="Connexion" />
             </View>
             <Menubar navigation={navigation}/>

@@ -33,7 +33,7 @@ export default StyleSheet.create({
         color: '#fff',
         borderWidth: 1,
         borderColor: '#fff',
-        width: '50%',
+        width: '80%',
         fontSize: 16,
     },
 

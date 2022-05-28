@@ -33,8 +33,17 @@ export default StyleSheet.create({
         color: '#fff',
         borderWidth: 1,
         borderColor: '#fff',
-        width: '50%',
+        width: '80%',
         marginBottom: '6%',
         fontSize: 16,
+    },
+
+    textAlert: {
+        width: '90%',
+        color: "#e74c3c",
+        fontSize: 16,
+        marginVertical: '3%',
+        marginHorizontal: '5%',
+        textAlign: 'center',
     },
 });

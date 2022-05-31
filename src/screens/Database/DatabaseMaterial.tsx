@@ -45,6 +45,7 @@ export const DatabaseMaterial: FunctionComponent<Props> = ({ route }) => {
                 <Image style={styles.image} source={{uri: images + material?.data.attributes.Images + '.png'}}/>
                 
                 <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Informations</Text>
+                <Text style={styles.text}>ID: {material?.data.attributes.ID_Materials}</Text>
                 <Text style={styles.text}>Type: {material?.data.attributes.Type}</Text>
                 <Text style={styles.text}>Source: {material?.data.attributes.Source}</Text>
                 <Text style={styles.text}>{material?.data.attributes.Description}</Text>

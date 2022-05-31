@@ -4,6 +4,7 @@ export type RootStackParamList = {
     Database: undefined;
     Inventory: undefined;
     Login: undefined;
+    Register: undefined;
     DatabaseCharacters: undefined;
     DatabaseCharacter: { id: string };
     DatabaseArtifacts: undefined;

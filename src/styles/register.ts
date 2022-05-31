@@ -17,14 +17,14 @@ export default StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        paddingTop: '20%',
     },
 
     text: {
         width: '90%',
         color: "#fff",
         fontSize: 16,
-        marginVertical: '1%',
+        marginTop: '6%',
+        marginBottom: '1%',
         marginHorizontal: '5%',
         textAlign: 'center',
     },
@@ -34,7 +34,6 @@ export default StyleSheet.create({
         borderWidth: 1,
         borderColor: '#fff',
         width: '80%',
-        marginBottom: '6%',
         fontSize: 16,
     },
 

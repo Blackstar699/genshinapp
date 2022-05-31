@@ -7,5 +7,9 @@ export type User = {
     blocked:    boolean,
     createdAt:  string,
     updatedAt:  string,
-    name:       string,
+}
+
+export type LoginResponse = {
+    jwt: string
+    user: User
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'react-native';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootStackParamList } from './src/RootStackParamList';
 import { HomeScreen } from './src/screens/Homescreen';
@@ -39,12 +39,12 @@ const App = () => {
         <Stack.Screen
           name="Database"
           component={Database}
-          options={{ headerShown: false }}
+          options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Base de données'}}
         />
         <Stack.Screen
           name="Inventory"
           component={Inventory}
-          options={{ headerShown: false }}
+          options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Inventaire'}}
         />
         <Stack.Screen
           name="Login"

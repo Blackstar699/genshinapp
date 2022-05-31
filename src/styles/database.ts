@@ -22,13 +22,12 @@ export default StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         alignItems: 'center',
-        paddingVertical: '2%',
         justifyContent: 'space-evenly',
     },
 
     bloc: {
         width: '40%',
-        height: '46%',
+        height: '45%',
         backgroundColor: '#282828',
         alignItems: 'center',
         justifyContent: 'center',

@@ -14,7 +14,6 @@ export const Inventory: FunctionComponent<Props> = ({ navigation }) => {
     return(
         <View style={styles.container}>
             <View style={styles.content}>
-                <Text style={styles.text}>INVENTORY</Text>
                 <Text style={styles.text}>Dev in progress...</Text>
             </View>
             <Menubar navigation={navigation}/>

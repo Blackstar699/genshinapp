@@ -1,7 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 import React, { FunctionComponent } from "react";
 import {RootStackParamList} from "../RootStackParamList";
-import {Text, View, ScrollView, TouchableOpacity, Image} from "react-native";
+import {Text, View, TouchableOpacity, Image} from "react-native";
 import styles from "../styles/database";
 import { Menubar } from "./props/Menubar";
 

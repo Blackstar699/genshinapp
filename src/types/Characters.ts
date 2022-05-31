@@ -32,7 +32,7 @@ type attributes = {
     SubStat:                number,
     Region:                 string,
     Birthday:               string,
-    Constelations:          number,
+    Constellations:          number,
     Passives:               number,
     Skill1:                 number,
     Skill2:                 number,

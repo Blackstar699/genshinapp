@@ -6,10 +6,11 @@ import styles from "../../styles/databaseCharacter";
 import { Menubar } from "../props/Menubar";
 import { Character } from "../../types/Characters";
 import { Constellations } from "../../types/Constellations";
+
 type Props = {
     route: RouteProp<RootStackParamList, 'DatabaseCharacter'>;
 }
-//https://strapi-genshin.latabledesattentistes.fr/api/Constellation/' + character?.data.attributes.Constelations
+
 export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
     const images = "https://images.latabledesattentistes.fr/genshin/";
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -21,7 +22,6 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
     const apiPrefix = 'https://strapi-genshin.latabledesattentistes.fr/api';
     const apiCharacterPrefix = '/Characters';
     const apiConstellationPrefix = '/constellations?filters[ID_Constellations][$eq]=';
-    const apiWeaponTypesPrefix = '/weapon-types?filters[ID_WeaponTypes][$eq]='
 
     const headers = {
         'Content-Type': 'application/json',

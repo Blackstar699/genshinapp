@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "genshin-app",
+    "name": "Pocket Impact",
     "slug": "genshin-app",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {

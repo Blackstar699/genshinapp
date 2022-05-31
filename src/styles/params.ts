@@ -20,8 +20,8 @@ export default StyleSheet.create({
     },
 
     loginBloc: {
-        width: '80%',
-        marginHorizontal: '10%',
+        width: '90%',
+        marginHorizontal: '5%',
         marginVertical: '2%',
         flexDirection: 'row',
         justifyContent: 'space-evenly',
@@ -36,7 +36,7 @@ export default StyleSheet.create({
 
     username: {
         width: '40%',
-        paddingVertical: '1%',
+        paddingVertical: '3%',
         color: "#fff",
         fontSize: 15,
         textAlign: 'center',

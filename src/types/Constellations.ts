@@ -18,7 +18,7 @@ export type Constellation = {
     }
 }
 type attributes = {
-    ID_Constelations: number,
+    ID_Constellations: number,
     Name: string,
     C1: string,
     C2: string,

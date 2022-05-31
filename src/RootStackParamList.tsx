@@ -10,4 +10,6 @@ export type RootStackParamList = {
     DatabaseArtifact: { id: string };
     DatabaseMaterials: undefined;
     DatabaseMaterial: {id: string};
+    DatabaseWeapons: undefined;
+    DatabaseWeapon: { id: string }
 };

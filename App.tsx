@@ -14,6 +14,8 @@ import { DatabaseArtifacts } from './src/screens/Database/DatabaseArtifacts';
 import { DatabaseArtifact } from './src/screens/Database/DatabaseArtifact';
 import { DatabaseMaterials } from './src/screens/Database/DatabaseMaterials';
 import { DatabaseMaterial } from './src/screens/Database/DatabaseMaterial';
+import { DatabaseWeapons } from './src/screens/Database/DatabaseWeapons';
+import { DatabaseWeapon } from './src/screens/Database/DatabaseWeapon';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -61,6 +63,16 @@ const App = () => {
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
+          name="DatabaseWeapons"
+          component={DatabaseWeapons}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Armes' }}
+        />
+        <Stack.Screen
+          name="DatabaseWeapon"
+          component={DatabaseWeapon}
+          options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
+        />
+        <Stack.Screen
           name="DatabaseArtifacts"
           component={DatabaseArtifacts}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Artéfacts' }}
@@ -80,6 +92,7 @@ const App = () => {
           component={DatabaseMaterial}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
         />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

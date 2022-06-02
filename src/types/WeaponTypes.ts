@@ -19,14 +19,15 @@ export type WeaponType = {
 }
 type attributes = {
     ID_WeaponTypes: number,
-    Name: string,
-    updatedAt: Date,
-    publishedAt: Date
+    Name:           string,
+    createdAt:	    Date,
+    updatedAt:	    Date,
+    publishedAt:	Date
 }
 
 type pagination = {
-    page: number,
-    pageSize: number,
-    pageCount: number,
-    total: number
+    page:       number,
+    pageSize:   number,
+    pageCount:  number,
+    total:      number
 }

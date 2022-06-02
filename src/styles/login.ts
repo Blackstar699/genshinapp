@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     
@@ -22,7 +22,7 @@ export default StyleSheet.create({
 
     text: {
         width: '90%',
-        color: "#fff",
+        color: '#fff',
         fontSize: 16,
         marginVertical: '1%',
         marginHorizontal: '5%',
@@ -40,7 +40,7 @@ export default StyleSheet.create({
 
     textAlert: {
         width: '90%',
-        color: "#e74c3c",
+        color: '#e74c3c',
         fontSize: 16,
         marginVertical: '3%',
         marginHorizontal: '5%',

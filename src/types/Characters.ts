@@ -32,15 +32,16 @@ type attributes = {
     SubStat:                number,
     Region:                 string,
     Birthday:               string,
-    Constellations:          number,
+    Constellations:         number,
     Passives:               number,
     Skill1:                 number,
     Skill2:                 number,
     Skill3:                 number,
     ElevationMaterials:     number,
     SkillsMaterials:        number,
-    updatedAt:              Date,
-    publishedAt:            Date
+    createdAt:	            Date,
+    updatedAt:	            Date,
+    publishedAt:	        Date
 }
 
 type pagination = {

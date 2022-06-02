@@ -25,80 +25,79 @@ const App = () => {
     <NavigationContainer>
       <StatusBar
         animated={true}
-        backgroundColor="#282828"
+        backgroundColor='#282828'
         hidden={false} />
       <Stack.Navigator screenOptions={{ animation: 'none' }}>
         <Stack.Screen
-          name="Home"
+          name='Home'
           component={HomeScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Params"
+          name='Params'
           component={Params}
           options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Paramètres'}}
         />
         <Stack.Screen
-          name="Database"
+          name='Database'
           component={Database}
           options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Base de données'}}
         />
         <Stack.Screen
-          name="Inventory"
+          name='Inventory'
           component={Inventory}
           options={{ headerShown: true, headerBackVisible: false, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Inventaire'}}
         />
         <Stack.Screen
-          name="Login"
+          name='Login'
           component={Login}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Connexion'}}
         />
         <Stack.Screen
-          name="Register"
+          name='Register'
           component={Register}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Créer un compte'}}
         />
         <Stack.Screen
-          name="DatabaseCharacters"
+          name='DatabaseCharacters'
           component={DatabaseCharacters}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Personnages' }}
         />
         <Stack.Screen
-          name="DatabaseCharacter"
+          name='DatabaseCharacter'
           component={DatabaseCharacter}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
-          name="DatabaseWeapons"
+          name='DatabaseWeapons'
           component={DatabaseWeapons}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Armes' }}
         />
         <Stack.Screen
-          name="DatabaseWeapon"
+          name='DatabaseWeapon'
           component={DatabaseWeapon}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
-          name="DatabaseArtifacts"
+          name='DatabaseArtifacts'
           component={DatabaseArtifacts}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Artéfacts' }}
         />
         <Stack.Screen
-          name="DatabaseArtifact"
+          name='DatabaseArtifact'
           component={DatabaseArtifact}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
         <Stack.Screen
-          name="DatabaseMaterials"
+          name='DatabaseMaterials'
           component={DatabaseMaterials}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerTitleAlign: 'center', headerShadowVisible: false, title: 'Matériaux' }}
         />
         <Stack.Screen
-          name="DatabaseMaterial"
+          name='DatabaseMaterial'
           component={DatabaseMaterial}
           options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#202020' }, headerShadowVisible: false, title: '' }}
         />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

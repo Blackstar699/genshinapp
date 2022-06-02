@@ -1,19 +1,19 @@
-import { NavigationProp } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import {RootStackParamList} from "../../RootStackParamList";
-import {Text, View, TouchableOpacity, Image, FlatList } from "react-native";
-import styles from "../../styles/databaseWeapons";
-import { Menubar } from "../props/Menubar";
-import { Weapons } from "../../types/Weapons";
+import { NavigationProp } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {RootStackParamList} from '../../RootStackParamList';
+import {Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
+import styles from '../../styles/databaseWeapons';
+import { Menubar } from '../props/Menubar';
+import { Weapons } from '../../types/Weapons';
 import { LinearGradient } from 'expo-linear-gradient';
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'DatabaseWeapons'>;
 }
 
 export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
 
     const [check1, setCheck1] = useState(true);
     const [check2, setCheck2] = useState(true);
@@ -29,7 +29,7 @@ export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
     useEffect(() => {
         fetch(url,
             {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -37,10 +37,10 @@ export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
                 }
             }
         )
-          .then((response) => response.json())
-          .then((json) => {setWeapons(json)})
-          .catch((error) => console.error(error))
-          .finally(() => setLoading(false));
+        .then((response) => response.json())
+        .then((json) => {setWeapons(json)})
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
     }, []);
 
     return(
@@ -58,7 +58,7 @@ export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
                 renderItem={
                     ({item}) => {
                         return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Rarity)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
-                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseWeapon", {id: item.id, atq: item.attributes.ATQ, substat: item.attributes.SubStat, weapontype: item.attributes.WeaponType})}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('DatabaseWeapon', {id: item.id, atq: item.attributes.ATQ, substat: item.attributes.SubStat, weapontype: item.attributes.WeaponType})}>
                                         <View style={styles.imageView}>
                                             <Image style={styles.image} source={{ uri: images + item.attributes.Images + '.png' }}/>
                                         </View>
@@ -76,18 +76,24 @@ export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
 const GradientColor = (rarity: number) => {
     let colors: Array<string>;
 
-    if(rarity == 1){
-        colors = ['#4F5963','#79838F'];
-    }else if(rarity == 2){
-        colors = ['#4A5C5F','#53886A'];
-    }else if(rarity == 3){
-        colors = ['#515676','#4A90A8'];
-    }else if(rarity == 4){
-        colors = ['#625889','#AC7FC0'];
-    }else if(rarity == 5){
-        colors = ['#705551','#D39B4F'];
-    }else{
-        colors = ['#282828', '#282828'];
+    switch(rarity){
+        case 1:
+            colors = ['#4F5963','#79838F'];
+            break;
+        case 2:
+            colors = ['#4A5C5F','#53886A'];
+            break;
+        case 3:
+            colors = ['#515676','#4A90A8'];
+            break;
+        case 4:
+            colors = ['#625889','#AC7FC0'];
+            break;
+        case 5:
+            colors = ['#705551','#D39B4F'];
+            break;
+        default:
+            colors = ['#282828','#282828'];
     }
 
     return colors;

@@ -1,11 +1,11 @@
-import { NavigationProp } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import {RootStackParamList} from "../RootStackParamList";
-import {Text, View, Button, TouchableOpacity} from "react-native";
-import styles from "../styles/params";
-import { Menubar } from "./props/Menubar";
+import { NavigationProp } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {RootStackParamList} from '../RootStackParamList';
+import {Text, View, TouchableOpacity } from 'react-native';
+import styles from '../styles/params';
+import { Menubar } from './props/Menubar';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {User, LoginResponse} from "../types/User";
+import { LoginResponse } from '../types/User';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Params'>;

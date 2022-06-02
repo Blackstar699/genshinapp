@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -7,15 +7,15 @@ export default StyleSheet.create({
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 
     text:{
-        color: "#fff",
+        color: '#fff',
         fontSize: 20,
     },
     
     button: {
-        backgroundColor: "#ffffff00"
+        backgroundColor: '#ffffff00'
     },
 
     content: {

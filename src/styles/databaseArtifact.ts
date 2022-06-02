@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     
@@ -29,26 +29,26 @@ export default StyleSheet.create({
 
     detailBloc: {
         width: '90%',
-        aspectRatio: 4/1.3,
         alignItems: 'center',
         marginHorizontal: '5%',
+        marginVertical: '1%',
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginVertical: '1%',
     },
 
     detailText: {
         width: '75%',
-        color: "#fff",
-        fontSize: 15,
+        color: '#fff',
+        fontSize: 14,
+        marginLeft: '4%',
         textAlign: 'justify',
-        textAlignVertical: "center",
+        textAlignVertical: 'center',
     },
 
     text: {
         width: '90%',
-        color: "#fff",
-        fontSize: 15,
+        color: '#fff',
+        fontSize: 14,
         marginVertical: '1%',
         marginHorizontal: '5%',
         textAlign: 'justify',
@@ -66,7 +66,7 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: "25%",
-        aspectRatio: 1,
+        width: '18%',
+        aspectRatio: 1/1,
     },
 });

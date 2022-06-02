@@ -1,26 +1,26 @@
-import { NavigationProp, RouteProp } from "@react-navigation/native";
-import {RootStackParamList} from "../RootStackParamList";
-import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
+import {RootStackParamList} from '../RootStackParamList';
+import { Button, Text, TextInput, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useState } from 'react';
 import styles from '../styles/register'
-import {User, LoginResponse} from "../types/User";
-import { Menubar } from "./props/Menubar";
+import { LoginResponse } from '../types/User';
+import { Menubar } from './props/Menubar';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Register'>;
 }
 
 const register = (email: string, pseudo: string, password: string): Promise<LoginResponse> => {
-  return fetch("https://strapi-genshin.latabledesattentistes.fr/api/auth/local/register", {
+  return fetch('https://strapi-genshin.latabledesattentistes.fr/api/auth/local/register', {
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
-      "email": email,
-      "username": pseudo,
-      "password": password
+      'email': email,
+      'username': pseudo,
+      'password': password
     })
   })
     .then(response => response.json())
@@ -28,12 +28,13 @@ const register = (email: string, pseudo: string, password: string): Promise<Logi
 }
 
 export const Register: FunctionComponent<Props> = ({ navigation }) => {
-    const [identifier, setIdentifier] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [verifyPassword, setVerifyPassword] = useState("");
+  
+    const [identifier, setIdentifier] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [verifyPassword, setVerifyPassword] = useState('');
 
-    const [alert, setAlert] = useState(" ");
+    const [alert, setAlert] = useState(' ');
 
     const onPressCallback = () => {
       if(password === verifyPassword && password.length >= 6 && username.length >= 3){
@@ -48,11 +49,11 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
         })
       }else{
         if(username.length < 3){
-          setAlert("le pseudo doit faire au minimum 3 caractères");
+          setAlert('le pseudo doit faire au minimum 3 caractères');
         }else if(password !== verifyPassword){
-          setAlert("les mots de passe entrés ne correspondent pas");
+          setAlert('les mots de passe entrés ne correspondent pas');
         }else if(password.length < 6){
-          setAlert("le mot de passe doit faire au minimum 6 caractères");
+          setAlert('le mot de passe doit faire au minimum 6 caractères');
         }
       }
     }

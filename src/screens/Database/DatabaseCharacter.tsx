@@ -1,18 +1,18 @@
-import { NavigationProp, RouteProp, useNavigation } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState, Component } from "react";
-import { RootStackParamList } from "../../RootStackParamList";
-import { Text, View, ScrollView, Image } from "react-native";
-import styles from "../../styles/databaseCharacter";
-import { Menubar } from "../props/Menubar";
-import { Character } from "../../types/Characters";
-import { Constellations } from "../../types/Constellations";
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState, Component } from 'react';
+import { RootStackParamList } from '../../RootStackParamList';
+import { Text, View, ScrollView, Image } from 'react-native';
+import styles from '../../styles/databaseCharacter';
+import { Menubar } from '../props/Menubar';
+import { Character } from '../../types/Characters';
+import { Constellations } from '../../types/Constellations';
 
 type Props = {
     route: RouteProp<RootStackParamList, 'DatabaseCharacter'>;
 }
 
 export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         .finally(() => setLoading(false));
     }, []);
 
-    const color: string = GetColor(typeof character === 'undefined' ? " " : character.data.attributes.Element);
+    const color: string = GetColor(typeof character === 'undefined' ? ' ' : character.data.attributes.Element);
 
     return (
         <View style={styles.container}>
@@ -52,12 +52,12 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                     <Text style={styles.quote}>Rareté : {character?.data.attributes.Rarity}</Text>
                     <Text style={styles.quote}>Sexe : {character?.data.attributes.Gender}</Text>
                     <Text style={styles.quote}>Arme de Prédilection : {character?.data.attributes.WeaponType}</Text>
-                    <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
-                    <Image style={styles.gallery} source={{ uri: images + character?.data.attributes.Images + '_portrait.png' }} />
+                    
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
 
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellation</Text>
                     <Image style={styles.Constel} source={{ uri: images + character?.data.attributes.Images + '_constellation.png' }} />
+                    
                     <View style={styles.detailBloc}>
                         <Image style={styles.imageconstellation} source={{ uri: images + character?.data.attributes.Images + '_constellation_1.png' }} />
                         <Text style={styles.detailText}>{constellation?.data[0].attributes.C1}{'\n'}{constellation?.data[0].attributes.DescriptionC1}</Text>
@@ -82,11 +82,15 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                         <Image style={styles.imageconstellation} source={{ uri: images + character?.data.attributes.Images + '_constellation_5.png' }} />
                         <Text style={styles.detailText}>{constellation?.data[0].attributes.C5}{'\n'}{constellation?.data[0].attributes.DescriptionC5}</Text>
                     </View>
+                    
                     <View style={styles.detailBloc}>
                         <Image style={styles.imageconstellation} source={{ uri: images + character?.data.attributes.Images + '_constellation_6.png' }} />
                         <Text style={styles.detailText}>{constellation?.data[0].attributes.C5}{'\n'}{constellation?.data[0].attributes.DescriptionC6}</Text>
                     </View>
+
                     <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Elévation</Text>
+                    <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Galerie</Text>
+                    <Image style={styles.gallery} source={{ uri: images + character?.data.attributes.Images + '_portrait.png' }} />
                 </ScrollView> : <View></View>}
             <Menubar navigation={navigation} />
         </View>
@@ -96,22 +100,30 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
 const GetColor = (element: string) => {
     let colors: string;
 
-    if (element == "Geo") {
-        colors = '#bfa34e';
-    } else if (element == "Electro") {
-        colors = '#af71ca';
-    } else if (element == "Pyro") {
-        colors = '#bc7057';
-    } else if (element == "Hydro") {
-        colors = '#297bbe';
-    } else if (element == "Dendro") {
-        colors = '#D39B4F';
-    } else if (element == "Anemo") {
-        colors = '#48bcb4';
-    } else if (element == "Cryo") {
-        colors = '#1c4d80';
-    } else {
-        colors = '#ccc';
+    switch(element){
+        case 'Electro':
+            colors = '#af71ca';
+            break;
+        case 'Geo':
+            colors = '#bfa34e';
+            break;
+        case 'Pyro':
+            colors = '#bc7057';
+            break;
+        case 'Anemo':
+            colors = '#48bcb4';
+            break;
+        case 'Dendro':
+            colors = '#D39B4F';
+            break;
+        case 'Cryo':
+            colors = '#1c4d80';
+            break;
+        case 'Hydro':
+            colors = '#297bbe';
+            break;
+        default:
+            colors = '#ccc';
     }
 
     return colors;

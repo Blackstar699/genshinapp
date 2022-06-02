@@ -10,6 +10,6 @@ export type User = {
 }
 
 export type LoginResponse = {
-    jwt: string
-    user: User
+    jwt:    string,
+    user:   User
 }

@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -30,48 +30,51 @@ export default StyleSheet.create({
     detailBloc: {
         width: '90%',
         alignItems: 'center',
-        marginHorizontal: '1%',
+        marginHorizontal: '5%',
         marginVertical: '1%',
         flexDirection: 'row',
         flexWrap: 'wrap',
     },
 
     characterpreview: {
-        width: "100%",
+        width: '100%',
         aspectRatio: 1 / 1,
     },
+
     gallery: {
-        width: "60%",
+        width: '70%',
         aspectRatio: 1 / 2,
     },
+
     Constel: {
-        width: "50%",
+        width: '50%',
         aspectRatio: 1 / 1,
     },
+
     detailText: {
         width: '75%',
-        color: "#fff",
-        fontSize: 11,
-        marginLeft: '7%',
+        color: '#fff',
+        fontSize: 14,
+        marginLeft: '5%',
         textAlign: 'justify',
-        textAlignVertical: "center",
+        textAlignVertical: 'center',
     },
+
     quote: {
         width: '90%',
-        color: "#7F7F7F",
-        fontSize: 12,
+        color: '#fff',
+        fontSize: 14,
         textAlign: 'center',
-
     },
+
     text: {
         width: '90%',
-        color: "#fff",
-        fontSize: 15,
+        color: '#fff',
+        fontSize: 14,
         marginVertical: '5%',
         marginHorizontal: '5%',
         marginRight: '10%',
         textAlign: 'justify',
-
     },
 
     title: {
@@ -86,11 +89,12 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: "25%",
+        width: '25%',
         aspectRatio: 1,
     },
+
     imageconstellation: {
-        width: "15%",
+        width: '15%',
         aspectRatio: 1 / 1,
     },
 });

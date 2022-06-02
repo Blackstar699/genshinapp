@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
@@ -6,10 +6,10 @@ export default StyleSheet.create({
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 
     text:{
-        color: "#fff",
+        color: '#fff',
         fontSize: 20,
     },
 

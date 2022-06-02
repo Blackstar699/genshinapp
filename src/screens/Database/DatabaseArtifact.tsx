@@ -1,17 +1,17 @@
-import { NavigationProp, RouteProp, useNavigation } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { RootStackParamList } from "../../RootStackParamList";
-import { Text, View, ScrollView, Image } from "react-native";
-import styles from "../../styles/databaseArtifact";
-import { Menubar } from "../props/Menubar";
-import { ArtifactSet } from "../../types/ArtifactSets";
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { RootStackParamList } from '../../RootStackParamList';
+import { Text, View, ScrollView, Image } from 'react-native';
+import styles from '../../styles/databaseArtifact';
+import { Menubar } from '../props/Menubar';
+import { ArtifactSet } from '../../types/ArtifactSets';
 
 type Props = {
     route: RouteProp<RootStackParamList, 'DatabaseArtifact'>;
 }
 
 export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
     useEffect(() => {
         fetch('https://strapi-genshin.latabledesattentistes.fr/api/artifact-sets/' + route.params.id,
             {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -82,14 +82,18 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
 const GetColor = (rarity: number) => {
     let colors: string;
 
-    if (rarity == 3) {
-        colors = '#4A90A8';
-    } else if (rarity == 4) {
-        colors = '#AC7FC0';
-    } else if (rarity == 5) {
-        colors = '#D39B4F';
-    } else {
-        colors = '#ccc';
+    switch(rarity){
+        case 3:
+            colors = '#4A90A8';
+            break;
+        case 4:
+            colors = '#AC7FC0';
+            break;
+        case 5:
+            colors = '#D39B4F';
+            break;
+        default:
+            colors = '#ccc';
     }
 
     return colors;

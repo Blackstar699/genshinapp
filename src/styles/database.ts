@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     
@@ -8,12 +8,12 @@ export default StyleSheet.create({
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 
     text: {
-        color: "#fff",
+        color: '#fff',
         fontSize: 20,
-        paddingTop: "8%",
+        paddingTop: '8%',
     },
 
     content: {
@@ -36,7 +36,7 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: "80%",
+        width: '80%',
         aspectRatio: 1,
         borderRadius: 20
     },

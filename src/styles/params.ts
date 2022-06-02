@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -8,7 +8,7 @@ export default StyleSheet.create({
         backgroundColor: '#202020',
         alignItems: 'center',
         justifyContent: 'center',
-      },
+    },
 
     content: {
         width: '100%',
@@ -37,19 +37,19 @@ export default StyleSheet.create({
     username: {
         width: '40%',
         paddingVertical: '3%',
-        color: "#fff",
+        color: '#fff',
         fontSize: 15,
         textAlign: 'center',
     },
 
     buttonText: {
-        color: "#fff",
+        color: '#fff',
         fontSize: 15,
         textAlign: 'center',
     },
 
     text:{
-        color: "#fff",
+        color: '#fff',
         fontSize: 15,
     },
 });

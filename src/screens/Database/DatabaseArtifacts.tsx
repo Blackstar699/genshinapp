@@ -1,19 +1,19 @@
-import { NavigationProp } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import {RootStackParamList} from "../../RootStackParamList";
-import {Text, View, TouchableOpacity, Image, FlatList } from "react-native";
-import styles from "../../styles/databaseArtifacts";
-import { Menubar } from "../props/Menubar";
-import { ArtifactSets } from "../../types/ArtifactSets";
+import { NavigationProp } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {RootStackParamList} from '../../RootStackParamList';
+import {Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
+import styles from '../../styles/databaseArtifacts';
+import { Menubar } from '../props/Menubar';
+import { ArtifactSets } from '../../types/ArtifactSets';
 import { LinearGradient } from 'expo-linear-gradient';
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'DatabaseArtifacts'>;
 }
 
 export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
 
     const [check1, setCheck1] = useState(true);
     const [check2, setCheck2] = useState(true);
@@ -27,7 +27,7 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
     useEffect(() => {
         fetch(url,
             {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -54,7 +54,7 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
                 renderItem={
                     ({item}) => {
                         return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.RarityMax)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
-                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseArtifact", {id: item.id})}>
+                                    <TouchableOpacity onPress={() => navigation.navigate('DatabaseArtifact', {id: item.id})}>
                                         <View style={styles.imageView}>
                                             <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_goblet_of_eonothem.png' }}/>
                                         </View>
@@ -72,14 +72,18 @@ export const DatabaseArtifacts: FunctionComponent<Props> = ({ navigation }) => {
 const GradientColor = (rarity: number) => {
     let colors: Array<string>;
 
-    if(rarity == 3){
-        colors = ['#515676','#4A90A8'];
-    }else if(rarity == 4){
-        colors = ['#625889','#AC7FC0'];
-    }else if(rarity == 5){
-        colors = ['#705551','#D39B4F'];
-    }else{
-        colors = ['#282828', '#282828'];
+    switch(rarity){
+        case 3:
+            colors = ['#515676','#4A90A8'];
+            break;
+        case 4:
+            colors = ['#625889','#AC7FC0'];
+            break;
+        case 5:
+            colors = ['#705551','#D39B4F'];
+            break;
+        default:
+            colors = ['#282828', '#282828'];
     }
 
     return colors;

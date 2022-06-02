@@ -1,17 +1,17 @@
-import { NavigationProp, RouteProp, useNavigation } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import {RootStackParamList} from "../../RootStackParamList";
-import {Text, View, ScrollView, Image } from "react-native";
-import styles from "../../styles/databaseMaterial";
-import { Menubar } from "../props/Menubar";
-import { Material } from "../../types/Materials";
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {RootStackParamList} from '../../RootStackParamList';
+import {Text, View, ScrollView, Image } from 'react-native';
+import styles from '../../styles/databaseMaterial';
+import { Menubar } from '../props/Menubar';
+import { Material } from '../../types/Materials';
 
 type Props = {
     route: RouteProp<RootStackParamList, 'DatabaseMaterial'>;
 }
 
 export const DatabaseMaterial: FunctionComponent<Props> = ({ route }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export const DatabaseMaterial: FunctionComponent<Props> = ({ route }) => {
     useEffect(() => {
         fetch('https://strapi-genshin.latabledesattentistes.fr/api/materials/'+route.params.id,
             {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -59,18 +59,24 @@ export const DatabaseMaterial: FunctionComponent<Props> = ({ route }) => {
 const GetColor = (rarity: number) => {
     let colors: string;
 
-    if(rarity == 1){
-        colors = '#79838F';
-    }else if(rarity == 2){
-        colors = '#53886A';
-    }else if(rarity == 3){
-        colors = '#4A90A8';
-    }else if(rarity == 4){
-        colors = '#AC7FC0';
-    }else if(rarity == 5){
-        colors = '#D39B4F';
-    }else{
-        colors = '#ccc';
+    switch(rarity){
+        case 1:
+            colors = '#79838F';
+            break;
+        case 2:
+            colors = '#53886A';
+            break;
+        case 3:
+            colors = '#4A90A8';
+            break;
+        case 4:
+            colors = '#AC7FC0';
+            break;
+        case 5:
+            colors = '#D39B4F';
+            break;
+        default:
+            colors = '#ccc';
     }
 
     return colors;

@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+    
     container: {
         flex: 1,
         width: '100%',
@@ -29,7 +30,7 @@ export default StyleSheet.create({
     description: {
         width: '90%',
         color: '#fff',
-        fontSize: 15,
+        fontSize: 14,
         marginVertical: '1%',
         marginHorizontal: '5%',
         textAlign: 'justify',
@@ -38,7 +39,7 @@ export default StyleSheet.create({
     statText: {
         width: '100%',
         color: '#fff',
-        fontSize: 15,
+        fontSize: 14,
         marginVertical: '2%',
         textAlign: 'center',
     },

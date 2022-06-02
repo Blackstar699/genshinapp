@@ -1,22 +1,19 @@
-import { NavigationProp } from "@react-navigation/native";
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { RootStackParamList } from "../../RootStackParamList";
-import { Text, View, TouchableOpacity, Image, FlatList } from "react-native";
-import styles from "../../styles/databaseCharacters";
-import { Menubar } from "../props/Menubar";
-import { Characters } from "../../types/Characters";
+import { NavigationProp } from '@react-navigation/native';
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import { RootStackParamList } from '../../RootStackParamList';
+import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
+import styles from '../../styles/databaseCharacters';
+import { Menubar } from '../props/Menubar';
+import { Characters } from '../../types/Characters';
 import { LinearGradient } from 'expo-linear-gradient';
-import BouncyCheckbox from "react-native-bouncy-checkbox";
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'DatabaseCharacters'>;
 }
 
 export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => {
-    const images = "https://images.latabledesattentistes.fr/genshin/";
-
-    const [check1, setCheck1] = useState(true);
-    const [check2, setCheck2] = useState(true);
+    const images = 'https://images.latabledesattentistes.fr/genshin/';
 
     const [check3, setCheck3] = useState(true);
     const [check4, setCheck4] = useState(true);
@@ -34,7 +31,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
     useEffect(() => {
         fetch(url,
             {
-                method: "GET",
+                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -42,10 +39,10 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 }
             }
         )
-            .then((response) => response.json())
-            .then((json) => { setCharacters(json) })
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false));
+        .then((response) => response.json())
+        .then((json) => { setCharacters(json) })
+        .catch((error) => console.error(error))
+        .finally(() => setLoading(false));
     }, []);
 
     return (
@@ -65,7 +62,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 renderItem={
                     ({ item }) => {
                         return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-                            <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id, constellations: item.attributes.Constellations })}>
+                            <TouchableOpacity onPress={() => navigation.navigate('DatabaseCharacter', { id: item.id, constellations: item.attributes.Constellations })}>
                                 <View style={styles.imageView}>
                                     <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_icon_big.png' }} />
                                 </View>
@@ -83,26 +80,30 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
 const GradientColor = (element: string) => {
     let colors: Array<string>;
 
-    if (element == "Electro") {
-        colors = ['#52276e', '#aF71ca'];
-    } else if (element == "Geo") {
-        colors = ['#544218', '#bfa34e'];
-    } else if (element == "Pyro") {
-        colors = ['#572224', '#bc7057'];
-    } else if (element == "5") {
-        colors = ['#0e3685', '#297bbe'];
-    } else if (element == "Anemo") {
-        colors = ['#15524a', '#48bcb4'];
-    } else if (element == "Dendro") {
-        colors = ['#ffffff', '#ffffff'];
-    } else if (element == "Cryo") {
-        colors = ['#347a93', '#72d0eb'];
-    } else if (element == "Hydro") {
-        colors = ['#0e3685', '#297bbe'];
-    }
-
-    else {
-        colors = ['#282828'];
+    switch(element){
+        case 'Electro':
+            colors = ['#52276e', '#aF71ca'];
+            break;
+        case 'Geo':
+            colors = ['#544218', '#bfa34e'];
+            break;
+        case 'Pyro':
+            colors = ['#572224', '#bc7057'];
+            break;
+        case 'Anemo':
+            colors = ['#15524a', '#48bcb4'];
+            break;
+        case 'Dendro':
+            colors = ['#ffffff', '#ffffff'];
+            break;
+        case 'Cryo':
+            colors = ['#347a93', '#72d0eb'];
+            break;
+        case 'Hydro':
+            colors = ['#0e3685', '#297bbe'];
+            break;
+        default:
+            colors = ['#0e3685', '#297bbe'];
     }
 
     return colors;
@@ -113,17 +114,13 @@ const SortElement = (datas: Characters | undefined, check3: boolean, check4: boo
 
     let Element: Array<string> = [];
 
-
     check6 ? Element.push('Electro') : null;
-    check7 ? Element.push("Geo") : null;
-    check3 ? Element.push("Pyro") : null;
-    check4 ? Element.push("Hydro") : null;
-    check9 ? Element.push("Anemo") : null;
-    check8 ? Element.push("Dendro") : null;
-    check5 ? Element.push("Cryo") : null;
-
-
-
+    check7 ? Element.push('Geo') : null;
+    check3 ? Element.push('Pyro') : null;
+    check4 ? Element.push('Hydro') : null;
+    check9 ? Element.push('Anemo') : null;
+    check8 ? Element.push('Dendro') : null;
+    check5 ? Element.push('Cryo') : null;
 
     if (typeof datas !== 'undefined') {
         return datas.data.filter(item => Element.includes(item.attributes.Element));

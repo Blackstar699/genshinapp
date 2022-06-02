@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
 
@@ -40,10 +40,9 @@ export default StyleSheet.create({
     },
 
     text: {
-        color: "#fff",
+        color: '#fff',
         fontSize: 18,
         textAlign: 'center',
-        //marginTop: "10%"
     },
 
     imageView: {
@@ -54,7 +53,7 @@ export default StyleSheet.create({
     },
 
     image: {
-        width: "75%",
+        width: '75%',
         aspectRatio: 1,
         borderRadius: 20
     },

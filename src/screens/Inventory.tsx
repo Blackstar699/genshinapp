@@ -1,10 +1,9 @@
-import { NavigationProp } from "@react-navigation/native";
-import React, { FunctionComponent } from "react";
-import {RootStackParamList} from "../RootStackParamList";
-import {Text, View} from "react-native";
-import { IconButton } from "react-native-paper";
-import styles from "../styles/inventory";
-import { Menubar } from "./props/Menubar";
+import { NavigationProp } from '@react-navigation/native';
+import React, { FunctionComponent } from 'react';
+import {RootStackParamList} from '../RootStackParamList';
+import {Text, View} from 'react-native';
+import styles from '../styles/inventory';
+import { Menubar } from './props/Menubar';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Inventory'>;

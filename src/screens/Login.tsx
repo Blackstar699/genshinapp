@@ -1,25 +1,25 @@
-import { NavigationProp, RouteProp } from "@react-navigation/native";
-import {RootStackParamList} from "../RootStackParamList";
-import {Alert, Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import { NavigationProp } from '@react-navigation/native';
+import {RootStackParamList} from '../RootStackParamList';
+import { Button, Text, TextInput, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {FunctionComponent, useState} from "react";
+import React, {FunctionComponent, useState} from 'react';
 import styles from '../styles/login'
-import {User, LoginResponse} from "../types/User";
-import { Menubar } from "./props/Menubar";
+import { LoginResponse } from '../types/User';
+import { Menubar } from './props/Menubar';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Login'>;
 }
 
 const login = (login: string, password: string): Promise<LoginResponse> => {
-  return fetch("https://strapi-genshin.latabledesattentistes.fr/api/auth/local", {
+  return fetch('https://strapi-genshin.latabledesattentistes.fr/api/auth/local', {
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json'
     },
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify({
-      "identifier": login,
-      "password": password
+      'identifier': login,
+      'password': password
     })
   })
     .then(response => response.json())
@@ -27,10 +27,10 @@ const login = (login: string, password: string): Promise<LoginResponse> => {
 }
 
 export const Login: FunctionComponent<Props> = ({ navigation }) => {
-    const [identifier, setIdentifier] = useState("");
-    const [password, setPassword] = useState("");
+    const [identifier, setIdentifier] = useState('');
+    const [password, setPassword] = useState('');
 
-    const [alert, setAlert] = useState(" ");
+    const [alert, setAlert] = useState(' ');
 
     const onPressCallback = () => {
         login(identifier, password)
@@ -61,7 +61,7 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
                 <Text style={styles.text}>Mot de passe</Text>
                 <TextInput secureTextEntry={true} style={styles.textInput} value={password} onChangeText={(value) => setPassword(value)} />
                 <Text style={styles.textAlert}>{alert}</Text>
-                <Button color={'#3867D6'} onPress={onPressCallback} title="Connexion" />
+                <Button color={'#3867D6'} onPress={onPressCallback} title='Connexion' />
             </View>
             <Menubar navigation={navigation}/>
         </View>

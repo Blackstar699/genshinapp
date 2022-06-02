@@ -4789,7 +4789,7 @@
     "path-browserify" "^1.0.0"
     "url-parse" "^1.4.4"
 
-"expo-cli@^5.4.3":
+"expo-cli@^5.4.6":
   "integrity" "sha512-sAXyvXTf9TeXTrek3xMM5sng6YbPhwUxbtrZOSy8SDUwmGWU6PP6leLAQt7y0P9WwzkxmxBvtrJN5HmhXHbRPQ=="
   "resolved" "https://registry.npmjs.org/expo-cli/-/expo-cli-5.4.6.tgz"
   "version" "5.4.6"

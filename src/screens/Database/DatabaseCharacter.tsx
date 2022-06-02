@@ -28,21 +28,15 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
         'Accept': 'application/json',
         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyODc0NTM3LCJleHAiOjE2NTU0NjY1Mzd9.1QLHOdVcF--qS8ch_MiO-EB0sJM0JzrZt4SL0jGxnRE'
     };
+
     useEffect(() => {
-        fetch(`${apiPrefix}${apiCharacterPrefix}/${route.params.id}`, { headers })
-            .then((response) => response.json())
-            .then((json1) => {
-                setCharacter(json1);
-
-                return fetch(`${apiPrefix}${apiConstellationPrefix}${json1.data.attributes.Constellations}`, { headers })
-
-            })
-            .then((response) => response.json())
-            .then((json2) => setConstellation(json2))
-
-            .catch((error) => console.error(error))
-            .finally(() => setLoading(false))
-    }, [])
+        Promise.all([
+            fetch(`${apiPrefix}${apiCharacterPrefix}/${route.params.id}`, {headers}).then((response) => response.json()).then((json) => {setCharacter(json)}),
+            fetch(`${apiPrefix}${apiConstellationPrefix}${route.params.constellations}`, {headers}).then((response) => response.json()).then((json) => {setConstellation(json)})
+        ])
+        .catch((error) => console.log(error))
+        .finally(() => setLoading(false));
+    }, []);
 
     const color: string = GetColor(typeof character === 'undefined' ? " " : character.data.attributes.Element);
 

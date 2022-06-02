@@ -6,11 +6,11 @@ export type RootStackParamList = {
     Login: undefined;
     Register: undefined;
     DatabaseCharacters: undefined;
-    DatabaseCharacter: { id: string };
+    DatabaseCharacter: { id: string, constellations: number };
     DatabaseArtifacts: undefined;
     DatabaseArtifact: { id: string };
     DatabaseMaterials: undefined;
     DatabaseMaterial: {id: string};
     DatabaseWeapons: undefined;
-    DatabaseWeapon: { id: string }
+    DatabaseWeapon: { id: string, atq: number, substat: number, weapontype: number }
 };

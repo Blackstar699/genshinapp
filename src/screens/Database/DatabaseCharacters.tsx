@@ -65,7 +65,7 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 renderItem={
                     ({ item }) => {
                         return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
-                            <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id })}>
+                            <TouchableOpacity onPress={() => navigation.navigate("DatabaseCharacter", { id: item.id, constellations: item.attributes.Constellations })}>
                                 <View style={styles.imageView}>
                                     <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_icon_big.png' }} />
                                 </View>

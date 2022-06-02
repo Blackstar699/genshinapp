@@ -58,7 +58,7 @@ export const DatabaseWeapons: FunctionComponent<Props> = ({ navigation }) => {
                 renderItem={
                     ({item}) => {
                         return  <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Rarity)} start={{x: 0, y: 0}} end={{x: 1, y: 1}}>
-                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseWeapon", {id: item.id})}>
+                                    <TouchableOpacity onPress={() => navigation.navigate("DatabaseWeapon", {id: item.id, atq: item.attributes.ATQ, substat: item.attributes.SubStat, weapontype: item.attributes.WeaponType})}>
                                         <View style={styles.imageView}>
                                             <Image style={styles.image} source={{ uri: images + item.attributes.Images + '.png' }}/>
                                         </View>

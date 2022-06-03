@@ -34,24 +34,46 @@ export default StyleSheet.create({
         marginVertical: '1%',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        backgroundColor: '#262626',
+        borderRadius: 10,
+        padding: '1%',
+    },
+
+    detailBlocText: {
+        width: '78%',
+        marginLeft: '2%',
     },
 
     detailText: {
-        width: '75%',
+        width: '100%',
         color: '#fff',
         fontSize: 14,
-        marginLeft: '4%',
         textAlign: 'justify',
         textAlignVertical: 'center',
     },
 
+    detailTextBold: {
+        width: '100%',
+        color: '#fff',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+
     text: {
-        width: '90%',
+        width: '92%',
         color: '#fff',
         fontSize: 14,
         marginVertical: '1%',
-        marginHorizontal: '5%',
+        marginHorizontal: '4%',
         textAlign: 'justify',
+    },
+
+    textBold: {
+        width: '92%',
+        color: '#fff',
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginHorizontal: '4%',
     },
 
     title: {

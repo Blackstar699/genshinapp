@@ -176,8 +176,15 @@ const CutStats = (stats: Stats|undefined, id: number) => {
             stat = 0;
     }
 
-    typeof stat === 'undefined' ? statString = '' : statString = stat.toString();
+    if(typeof stat === 'undefined'){
+        statString = 'N/A';
+    }else{
+        if(stat == -1){
+            statString = 'N/A';
+        }else{
+            statString = stat.toString();
+        }
+    }
 
     return statString;
-
 }

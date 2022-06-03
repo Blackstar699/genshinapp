@@ -34,6 +34,34 @@ export default StyleSheet.create({
         marginVertical: '1%',
         flexDirection: 'row',
         flexWrap: 'wrap',
+        backgroundColor: '#262626',
+        borderRadius: 10,
+        padding: '1%',
+    },
+
+    detailBlocText: {
+        width: '80%',
+        marginLeft: '2%',
+    },
+
+    detailText: {
+        width: '100%',
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'justify',
+        textAlignVertical: 'center',
+    },
+
+    detailTextBold: {
+        width: '100%',
+        color: '#fff',
+        fontSize: 15,
+        fontWeight: 'bold',
+    },
+
+    detailImage: {
+        width: '15%',
+        aspectRatio: 1 / 1,
     },
 
     characterpreview: {
@@ -44,37 +72,19 @@ export default StyleSheet.create({
     gallery: {
         width: '70%',
         aspectRatio: 1 / 2,
+        marginVertical: '1%',
     },
 
-    Constel: {
+    imageConstellation: {
         width: '50%',
         aspectRatio: 1 / 1,
-    },
-
-    detailText: {
-        width: '75%',
-        color: '#fff',
-        fontSize: 14,
-        marginLeft: '5%',
-        textAlign: 'justify',
-        textAlignVertical: 'center',
-    },
-
-    quote: {
-        width: '90%',
-        color: '#fff',
-        fontSize: 14,
-        textAlign: 'center',
     },
 
     text: {
         width: '90%',
         color: '#fff',
         fontSize: 14,
-        marginVertical: '5%',
-        marginHorizontal: '5%',
-        marginRight: '10%',
-        textAlign: 'justify',
+        textAlign: 'center',
     },
 
     title: {
@@ -88,13 +98,27 @@ export default StyleSheet.create({
         borderBottomWidth: 2,
     },
 
-    image: {
-        width: '25%',
-        aspectRatio: 1,
+    statsBloc: {
+        width: '90%',
+        alignItems: 'center',
+        marginHorizontal: '5%',
+        marginVertical: '1%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-evenly',
     },
 
-    imageconstellation: {
-        width: '15%',
-        aspectRatio: 1 / 1,
+    statBloc: {
+        width: '20%',
+        alignItems: 'center',
+        flexDirection: 'column',
+    },
+
+    statText: {
+        width: '100%',
+        color: '#fff',
+        fontSize: 14,
+        marginVertical: '4%',
+        textAlign: 'center',
     },
 });

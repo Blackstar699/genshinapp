@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Menubar } from './props/Menubar';
 //styles CSS
 import styles from '../styles/params';
+//constantes globales
+import { globalURL } from '../GlobalConsts';
 //types
 import { LoginResponse } from '../types/User';
 
@@ -31,18 +33,33 @@ export const Params: FunctionComponent<Props> = ({ navigation }) => {
         });
     }, [])
 
+    const DeleteAccount = () => {
+        fetch(globalURL + '/users/' + userdata?.user.id,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                            'Accept': 'application/json',
+                            'Authorization': 'Bearer ' + userdata?.jwt
+                  },
+            }
+        );
+        AsyncStorage.removeItem('@UserData');
+        navigation.navigate('Home');
+    };
+
     return(
         <View style={styles.container}>
                 {
                     isLogged ?
                     <View style={styles.content}>
                         <View style={styles.loginBloc}>
-                            <Text style={styles.username}>{userdata?.user.username}</Text>
+                            <Text style={styles.username}>Connecté en tant que: {userdata?.user.username}</Text>
                             <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false);}}>
                                 <Text style={styles.buttonText}>Déconnexion</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false);}}>
-                                <Text style={styles.buttonText}>Déconnexion</Text>
+                            <TouchableOpacity style={styles.button} onPress={() => DeleteAccount()}>
+                                <Text style={styles.buttonText}>Supprimer le compte</Text>
                             </TouchableOpacity>
                         </View>
                     </View>

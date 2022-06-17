@@ -20,22 +20,22 @@ export default StyleSheet.create({
     },
 
     loginBloc: {
-        width: '90%',
-        marginHorizontal: '5%',
+        width: '100%',
         marginVertical: '2%',
         flexDirection: 'row',
+        flexWrap: 'wrap',
         justifyContent: 'space-evenly',
     },
 
     button: {
-        width: '40%',
+        width: '45%',
         backgroundColor: '#3867D6',
         paddingVertical: '3%',
         borderRadius: 10,
     },
 
     username: {
-        width: '40%',
+        width: '100%',
         paddingVertical: '3%',
         color: '#fff',
         fontSize: 15,

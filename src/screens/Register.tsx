@@ -1,30 +1,22 @@
+//imports composants React
+import React, { FunctionComponent, useState } from 'react';
+import { Text, View, Button, TextInput } from 'react-native';
+//imports navigation
 import { NavigationProp } from '@react-navigation/native';
-import {RootStackParamList} from '../RootStackParamList';
-import { Button, Text, TextInput, View } from 'react-native';
+import { RootStackParamList } from '../RootStackParamList';
+//Async Storage pour mise en cache des données utilisateur
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {FunctionComponent, useState } from 'react';
-import styles from '../styles/register'
-import { LoginResponse } from '../types/User';
+//barre de menu
 import { Menubar } from './props/Menubar';
+//styles CSS
+import styles from '../styles/register';
+//constantes globales
+import { globalURL } from '../GlobalConsts';
+//types
+import { LoginResponse } from '../types/User';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Register'>;
-}
-
-const register = (email: string, pseudo: string, password: string): Promise<LoginResponse> => {
-  return fetch('https://strapi-genshin.latabledesattentistes.fr/api/auth/local/register', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      'email': email,
-      'username': pseudo,
-      'password': password
-    })
-  })
-    .then(response => response.json())
-    .then((data: LoginResponse) => data);
 }
 
 export const Register: FunctionComponent<Props> = ({ navigation }) => {
@@ -34,6 +26,7 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
     const [password, setPassword] = useState('');
     const [verifyPassword, setVerifyPassword] = useState('');
 
+    //message d'alerte si erreur lors de la création de compte
     const [alert, setAlert] = useState(' ');
 
     const onPressCallback = () => {
@@ -47,7 +40,7 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
             setAlert('Erreur');
           }
         })
-      }else{
+      } else {
         if(username.length < 3){
           setAlert('le pseudo doit faire au minimum 3 caractères');
         }else if(password !== verifyPassword){
@@ -63,7 +56,7 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
           const jsonValue = JSON.stringify(userdata);
           await AsyncStorage.setItem('@UserData', jsonValue);
         } catch (e) {
-          // saving error
+          console.log(e);
         }
     }
 
@@ -85,3 +78,27 @@ export const Register: FunctionComponent<Props> = ({ navigation }) => {
         </View>
     );
 }
+
+const register = (email: string, pseudo: string, password: string): Promise<LoginResponse> => {
+  return fetch(globalURL + '/auth/local/register', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      'email': email,
+      'username': pseudo,
+      'password': password,
+      'Inventory': {
+        'idArtifacts': 0,
+        'artifacts': [],
+        'idWeapons': 0,
+        'weapons': [],
+        'idCharacters': 0,
+        'characters': []
+      }
+    })
+  })
+    .then(response => response.json())
+    .then((data: LoginResponse) => data);
+};

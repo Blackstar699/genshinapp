@@ -1,9 +1,16 @@
-import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import {RootStackParamList} from '../../RootStackParamList';
-import {Text, View, ScrollView, Image } from 'react-native';
-import styles from '../../styles/databaseWeapon';
+import { Text, View, ScrollView, Image } from 'react-native';
+//imports navigation
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../RootStackParamList';
+//barre de menu
 import { Menubar } from '../props/Menubar';
+//styles CSS
+import styles from '../../styles/databaseWeapon';
+//constantes globales
+import { images, globalURL, headers, GetColor } from '../../GlobalConsts';
+//types
 import { Weapon } from '../../types/Weapons';
 import { Stats } from '../../types/Stats';
 import { WeaponTypes } from '../../types/WeaponTypes';
@@ -13,7 +20,7 @@ type Props = {
 }
 
 export const DatabaseWeapon: FunctionComponent<Props> = ({ route }) => {
-    const images = 'https://images.latabledesattentistes.fr/genshin/';
+
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -22,23 +29,16 @@ export const DatabaseWeapon: FunctionComponent<Props> = ({ route }) => {
     const [stat2, setStats2] = React.useState<Stats>();
     const [weapontype, setWeaponType] = React.useState<WeaponTypes>();
 
-    const apiPrefix = 'https://strapi-genshin.latabledesattentistes.fr/api';
     const apiWeaponPrefix = '/Weapons';
     const apiStatsPrefix = '/stats?filters[ID_Stats][$eq]=';
     const apiWeaponTypesPrefix = '/weapon-types?filters[ID_WeaponTypes][$eq]=';
 
-    const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyODc0NTM3LCJleHAiOjE2NTU0NjY1Mzd9.1QLHOdVcF--qS8ch_MiO-EB0sJM0JzrZt4SL0jGxnRE'
-    };
-
     useEffect(() => {
         Promise.all([
-            fetch(`${apiPrefix}${apiWeaponPrefix}/${route.params.id}`, {headers}).then((response) => response.json()).then((json) => {setWeapon(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.atq}`, {headers}).then((response) => response.json()).then((json) => {setStats1(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.substat}`, {headers}).then((response) => response.json()).then((json) => {setStats2(json)}),
-            fetch(`${apiPrefix}${apiWeaponTypesPrefix}${route.params.weapontype}`, {headers}).then((response) => response.json()).then((json) => {setWeaponType(json)})
+            fetch(`${globalURL}${apiWeaponPrefix}/${route.params.id}`, {headers}).then((response) => response.json()).then((json) => {setWeapon(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.atq}`, {headers}).then((response) => response.json()).then((json) => {setStats1(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.substat}`, {headers}).then((response) => response.json()).then((json) => {setStats2(json)}),
+            fetch(`${globalURL}${apiWeaponTypesPrefix}${route.params.weapontype}`, {headers}).then((response) => response.json()).then((json) => {setWeaponType(json)})
         ])
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
@@ -56,6 +56,9 @@ export const DatabaseWeapon: FunctionComponent<Props> = ({ route }) => {
                 <Image style={styles.image} source={{uri: images + weapon?.data.attributes.Images + '.png'}}/>
                 <Text style={styles.description}>Type: {weapontype?.data[0].attributes.Name}</Text>
                 <Text style={styles.description}>{weapon?.data.attributes.Description}</Text>
+
+                <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Raffinements</Text>
+                <Text style={styles.text}>Coming Soon...</Text>
 
                 <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Stats</Text>
 
@@ -81,38 +84,15 @@ export const DatabaseWeapon: FunctionComponent<Props> = ({ route }) => {
                         })}
                     </View>
                 </View>
-            </ScrollView>
+
+                <Text style={[styles.title, {color: color, borderBottomColor: color}]}>Matériaux d'élévation</Text>
+                <Text style={styles.text}>Coming Soon...</Text>
             
+            </ScrollView>
             <Menubar navigation={navigation}/>
         </View>
     );
 };
-
-const GetColor = (rarity: number) => {
-    let colors: string;
-
-    switch(rarity){
-        case 1:
-            colors = '#79838F';
-            break;
-        case 2:
-            colors = '#53886A';
-            break;
-        case 3:
-            colors = '#4A90A8';
-            break;
-        case 4:
-            colors = '#AC7FC0';
-            break;
-        case 5:
-            colors = '#D39B4F';
-            break;
-        default:
-            colors = '#ccc';
-    }
-
-    return colors;
-}
 
 const SortStats = (stats: Stats|undefined) => {
     let rows = [];
@@ -122,7 +102,7 @@ const SortStats = (stats: Stats|undefined) => {
     }
 
     return rows;
-}
+};
 
 const CutStats = (stats: Stats|undefined, id: number) => {
 
@@ -187,4 +167,4 @@ const CutStats = (stats: Stats|undefined, id: number) => {
     }
 
     return statString;
-}
+};

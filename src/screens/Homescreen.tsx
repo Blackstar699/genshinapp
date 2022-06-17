@@ -1,9 +1,13 @@
-import { NavigationProp } from '@react-navigation/native';
-import React, { FunctionComponent } from 'react';
-import {RootStackParamList} from '../RootStackParamList';
+//imports composants React
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
-import styles from '../styles/homescreen';
+//imports navigation
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../RootStackParamList';
+//barre de menu
 import { Menubar } from './props/Menubar';
+//styles CSS
+import styles from '../styles/homescreen';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Home'>;

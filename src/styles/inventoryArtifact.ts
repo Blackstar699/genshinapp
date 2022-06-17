@@ -19,32 +19,38 @@ export default StyleSheet.create({
         justifyContent: 'flex-start',
     },
 
-    text: {
+    titlePage: {
         width: '90%',
-        color: '#fff',
-        fontSize: 16,
-        marginTop: '6%',
-        marginBottom: '1%',
+        fontSize: 25,
+        fontWeight: 'bold',
+        textAlign: 'center',
         marginHorizontal: '5%',
+    },
+
+    text: {
+        width: '100%',
+        color: '#fff',
+        fontSize: 18,
+        marginVertical: '1%',
         textAlign: 'center',
     },
 
-    textInput: {
-        color: '#fff',
-        width: '80%',
-        fontSize: 16,
-        backgroundColor: '#383838',
-        paddingVertical: '2%',
-        paddingLeft: '5%',
-        borderRadius: 20,
+    image: {
+        width: '50%',
+        aspectRatio: 1/1,
     },
 
-    textAlert: {
-        width: '90%',
-        color: '#e74c3c',
-        fontSize: 16,
+    button: {
+        backgroundColor: '#3867D6',
+        paddingVertical: '3%',
+        paddingHorizontal: '3%',
         marginVertical: '3%',
-        marginHorizontal: '5%',
+        borderRadius: 10,
+    },
+
+    buttonText: {
+        color: '#fff',
+        fontSize: 15,
         textAlign: 'center',
     },
 });

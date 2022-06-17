@@ -1,19 +1,26 @@
-import { NavigationProp } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { RootStackParamList } from '../../RootStackParamList';
 import { Text, View, TouchableOpacity, Image, FlatList } from 'react-native';
-import styles from '../../styles/databaseCharacters';
-import { Menubar } from '../props/Menubar';
-import { Characters } from '../../types/Characters';
+//imports navigation
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../../RootStackParamList';
+//additional packages
 import { LinearGradient } from 'expo-linear-gradient';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
+//barre de menu
+import { Menubar } from '../props/Menubar';
+//styles CSS
+import styles from '../../styles/databaseCharacters';
+//constantes globales
+import { images, globalURL, headers, GetGradientColorCharacters } from '../../GlobalConsts';
+//types
+import { Characters } from '../../types/Characters';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'DatabaseCharacters'>;
 }
 
 export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => {
-    const images = 'https://images.latabledesattentistes.fr/genshin/';
 
     const [check3, setCheck3] = useState(true);
     const [check4, setCheck4] = useState(true);
@@ -26,17 +33,11 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
     const [isLoading, setLoading] = useState(true);
     const [characters, setCharacters] = React.useState<Characters>();
 
-    let url: string = 'https://strapi-genshin.latabledesattentistes.fr/api/Characters?pagination[pageSize]=100&sort[0]=Name%3Aasc';
-
     useEffect(() => {
-        fetch(url,
+        fetch(globalURL + '/Characters?pagination[pageSize]=100&sort[0]=Name%3Aasc',
             {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyODc0NTM3LCJleHAiOjE2NTU0NjY1Mzd9.1QLHOdVcF--qS8ch_MiO-EB0sJM0JzrZt4SL0jGxnRE'
-                }
+                headers: headers
             }
         )
         .then((response) => response.json())
@@ -57,11 +58,12 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                 <BouncyCheckbox isChecked={check8} text='Dendro' fillColor='#3867D6' style={styles.checkbox} textStyle={{ textDecorationLine: 'none', color: '#fff' }} useNativeDriver={false} onPress={() => { setCheck8(!check8); }} />
                 <BouncyCheckbox isChecked={check9} text='Anemo' fillColor='#3867D6' style={styles.checkbox} textStyle={{ textDecorationLine: 'none', color: '#fff' }} useNativeDriver={false} onPress={() => { setCheck9(!check9); }} />
             </View>
+
             <FlatList style={styles.list} showsVerticalScrollIndicator={false} numColumns={2}
                 data={SortElement(characters, check3, check4, check5, check6, check7, check8, check9)}
                 renderItem={
                     ({ item }) => {
-                        return <LinearGradient style={styles.bloc} colors={GradientColor(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
+                        return <LinearGradient style={styles.bloc} colors={GetGradientColorCharacters(item.attributes.Element)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}>
                             <TouchableOpacity onPress={() => navigation.navigate('DatabaseCharacter', { id: item.id, constellations: item.attributes.Constellations, weapontype: item.attributes.WeaponType, pv: item.attributes.PV, atq: item.attributes.ATQ, def: item.attributes.DEF, substat: item.attributes.SubStat, passives: item.attributes.Passives })}>
                                 <View style={styles.imageView}>
                                     <Image style={styles.image} source={{ uri: images + item.attributes.Images + '_icon_big.png' }} />
@@ -72,45 +74,13 @@ export const DatabaseCharacters: FunctionComponent<Props> = ({ navigation }) => 
                     }
                 }
             />
+
             <Menubar navigation={navigation} />
         </View>
     );
 };
 
-const GradientColor = (element: string) => {
-    let colors: Array<string>;
-
-    switch(element){
-        case 'Electro':
-            colors = ['#52276e', '#aF71ca'];
-            break;
-        case 'Geo':
-            colors = ['#544218', '#bfa34e'];
-            break;
-        case 'Pyro':
-            colors = ['#572224', '#bc7057'];
-            break;
-        case 'Anemo':
-            colors = ['#15524a', '#48bcb4'];
-            break;
-        case 'Dendro':
-            colors = ['#ffffff', '#ffffff'];
-            break;
-        case 'Cryo':
-            colors = ['#347a93', '#72d0eb'];
-            break;
-        case 'Hydro':
-            colors = ['#0e3685', '#297bbe'];
-            break;
-        default:
-            colors = ['#0e3685', '#297bbe'];
-    }
-
-    return colors;
-}
-
-
-const SortElement = (datas: Characters | undefined, check3: boolean, check4: boolean, check5: boolean, check6: boolean, check7: boolean, check8: boolean, check9: boolean,) => {
+const SortElement = (datas: Characters|undefined, check3: boolean, check4: boolean, check5: boolean, check6: boolean, check7: boolean, check8: boolean, check9: boolean,) => {
 
     let Element: Array<string> = [];
 
@@ -125,6 +95,4 @@ const SortElement = (datas: Characters | undefined, check3: boolean, check4: boo
     if (typeof datas !== 'undefined') {
         return datas.data.filter(item => Element.includes(item.attributes.Element));
     }
-}
-
-
+};

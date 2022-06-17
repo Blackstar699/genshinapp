@@ -76,4 +76,11 @@ export default StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'column',
     },
+
+    text: {
+        width: '90%',
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'center',
+    },
 });

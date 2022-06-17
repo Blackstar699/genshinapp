@@ -1,9 +1,16 @@
-import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
-import React, { FunctionComponent, useEffect, useState, Component } from 'react';
-import { RootStackParamList } from '../../RootStackParamList';
+//imports composants React
+import React, { FunctionComponent, useEffect, useState } from 'react';
 import { Text, View, ScrollView, Image } from 'react-native';
-import styles from '../../styles/databaseCharacter';
+//imports navigation
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../RootStackParamList';
+//barre de menu
 import { Menubar } from '../props/Menubar';
+//styles CSS
+import styles from '../../styles/databaseCharacter';
+//constantes globales
+import { images, globalURL, headers, GetColorCharacters } from '../../GlobalConsts';
+//types
 import { Character } from '../../types/Characters';
 import { Constellations } from '../../types/Constellations';
 import { WeaponTypes } from '../../types/WeaponTypes';
@@ -15,7 +22,7 @@ type Props = {
 }
 
 export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
-    const images = 'https://images.latabledesattentistes.fr/genshin/';
+
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
@@ -28,35 +35,28 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
     const [stat3, setStats3] = React.useState<Stats>();
     const [stat4, setStats4] = React.useState<Stats>();
 
-    const apiPrefix = 'https://strapi-genshin.latabledesattentistes.fr/api';
-    const apiCharacterPrefix = '/Characters';
+    const apiCharacterPrefix = '/characters';
     const apiPassivesPrefix = '/passives?filters[ID_Passives][$eq]=';
     const apiConstellationPrefix = '/constellations?filters[ID_Constellations][$eq]=';
     const apiWeaponTypesPrefix = '/weapon-types?filters[ID_WeaponTypes][$eq]=';
     const apiStatsPrefix = '/stats?filters[ID_Stats][$eq]=';
 
-    const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyODc0NTM3LCJleHAiOjE2NTU0NjY1Mzd9.1QLHOdVcF--qS8ch_MiO-EB0sJM0JzrZt4SL0jGxnRE'
-    };
-
     useEffect(() => {
         Promise.all([
-            fetch(`${apiPrefix}${apiCharacterPrefix}/${route.params.id}`, {headers}).then((response) => response.json()).then((json) => {setCharacter(json)}),
-            fetch(`${apiPrefix}${apiPassivesPrefix}${route.params.passives}`, {headers}).then((response) => response.json()).then((json) => {setPassives(json)}),
-            fetch(`${apiPrefix}${apiConstellationPrefix}${route.params.constellations}`, {headers}).then((response) => response.json()).then((json) => {setConstellation(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.pv}`, {headers}).then((response) => response.json()).then((json) => {setStats1(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.atq}`, {headers}).then((response) => response.json()).then((json) => {setStats2(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.def}`, {headers}).then((response) => response.json()).then((json) => {setStats3(json)}),
-            fetch(`${apiPrefix}${apiStatsPrefix}${route.params.substat}`, {headers}).then((response) => response.json()).then((json) => {setStats4(json)}),
-            fetch(`${apiPrefix}${apiWeaponTypesPrefix}${route.params.weapontype}`, {headers}).then((response) => response.json()).then((json) => {setWeaponType(json)})
+            fetch(`${globalURL}${apiCharacterPrefix}/${route.params.id}`, {headers}).then((response) => response.json()).then((json) => {setCharacter(json)}),
+            fetch(`${globalURL}${apiPassivesPrefix}${route.params.passives}`, {headers}).then((response) => response.json()).then((json) => {setPassives(json)}),
+            fetch(`${globalURL}${apiConstellationPrefix}${route.params.constellations}`, {headers}).then((response) => response.json()).then((json) => {setConstellation(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.pv}`, {headers}).then((response) => response.json()).then((json) => {setStats1(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.atq}`, {headers}).then((response) => response.json()).then((json) => {setStats2(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.def}`, {headers}).then((response) => response.json()).then((json) => {setStats3(json)}),
+            fetch(`${globalURL}${apiStatsPrefix}${route.params.substat}`, {headers}).then((response) => response.json()).then((json) => {setStats4(json)}),
+            fetch(`${globalURL}${apiWeaponTypesPrefix}${route.params.weapontype}`, {headers}).then((response) => response.json()).then((json) => {setWeaponType(json)})
         ])
         .catch((error) => console.log(error))
         .finally(() => setLoading(false));
     }, []);
 
-    const color: string = GetColor(typeof character === 'undefined' ? ' ' : character.data.attributes.Element);
+    const color = GetColorCharacters(typeof character === 'undefined' ? ' ' : character.data.attributes.Element);
 
     const levels = ['1', '20', '20+', '40', '40+', '50', '50+', '60', '60+', '70', '70+', '80', '80+', '90'];
 
@@ -74,6 +74,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
                 <Text style={styles.text}>Sexe: {character?.data.attributes.Gender}</Text>
                 <Text style={styles.text}>Type: {weapontype?.data[0].attributes.Name}</Text>
                 <Text style={styles.text}>Région: {character?.data.attributes.Region}</Text>
+                <Text style={styles.text}>Constellation: {constellation?.data[0].attributes.Name}</Text>
                 <Text style={styles.text}>Anniversaire: {character?.data.attributes.Birthday}</Text>
 
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Compétences</Text>
@@ -105,7 +106,7 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
 
                 <Text style={[styles.title, { color: color, borderBottomColor: color }]}>Constellations</Text>
                 <Image style={styles.imageConstellation} source={{ uri: images + character?.data.attributes.Images + '_constellation.png' }} />
-                    
+
                 <View style={styles.detailBloc}>
                     <Image style={styles.detailImage} source={{ uri: images + character?.data.attributes.Images + '_constellation_1.png' }} />
                     <View style={styles.detailBlocText}>
@@ -201,38 +202,6 @@ export const DatabaseCharacter: FunctionComponent<Props> = ({ route }) => {
     );
 };
 
-const GetColor = (element: string) => {
-    let colors: string;
-
-    switch(element){
-        case 'Electro':
-            colors = '#af71ca';
-            break;
-        case 'Geo':
-            colors = '#bfa34e';
-            break;
-        case 'Pyro':
-            colors = '#bc7057';
-            break;
-        case 'Anemo':
-            colors = '#48bcb4';
-            break;
-        case 'Dendro':
-            colors = '#D39B4F';
-            break;
-        case 'Cryo':
-            colors = '#1c4d80';
-            break;
-        case 'Hydro':
-            colors = '#297bbe';
-            break;
-        default:
-            colors = '#ccc';
-    }
-
-    return colors;
-}
-
 const SortStats = (stats: Stats|undefined) => {
     let rows = [];
 
@@ -241,7 +210,7 @@ const SortStats = (stats: Stats|undefined) => {
     }
 
     return rows;
-}
+};
 
 const CutStats = (stats: Stats|undefined, id: number) => {
 
@@ -306,4 +275,4 @@ const CutStats = (stats: Stats|undefined, id: number) => {
     }
 
     return statString;
-}
+};

@@ -1,16 +1,21 @@
-import { NavigationProp } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent } from 'react';
-import {RootStackParamList} from '../RootStackParamList';
-import {Text, View, TouchableOpacity, Image} from 'react-native';
-import styles from '../styles/database';
+import { Text, View, TouchableOpacity, Image } from 'react-native';
+//imports navigation
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../RootStackParamList';
+//barre de menu
 import { Menubar } from './props/Menubar';
+//styles CSS
+import styles from '../styles/database';
+//constantes globales
+import { images } from '../GlobalConsts';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Database'>;
 }
 
-export const Database: FunctionComponent<Props> = ({ navigation }) => {
-    const images = 'https://images.latabledesattentistes.fr/genshin/';
+export const Database: FunctionComponent<Props> = ({ navigation }) => {    
     return(
         <View style={styles.container}>
             <View style={styles.content}>

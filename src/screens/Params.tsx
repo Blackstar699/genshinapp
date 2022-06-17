@@ -1,10 +1,16 @@
-import { NavigationProp } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import {RootStackParamList} from '../RootStackParamList';
-import {Text, View, TouchableOpacity } from 'react-native';
-import styles from '../styles/params';
-import { Menubar } from './props/Menubar';
+import { Text, View, TouchableOpacity } from 'react-native';
+//imports navigation
+import { NavigationProp } from '@react-navigation/native';
+import { RootStackParamList } from '../RootStackParamList';
+//Async Storage pour récupération/supression des données utilisateur en cache
 import AsyncStorage from '@react-native-async-storage/async-storage';
+//barre de menu
+import { Menubar } from './props/Menubar';
+//styles CSS
+import styles from '../styles/params';
+//types
 import { LoginResponse } from '../types/User';
 
 type Props = {
@@ -13,8 +19,8 @@ type Props = {
 
 export const Params: FunctionComponent<Props> = ({ navigation }) => {
 
-    const [isLogged, setIsLogged] = useState(false);
     const [userdata, setUserdata] = React.useState<LoginResponse>();
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
         AsyncStorage.getItem('@UserData').then((value) => {
@@ -24,7 +30,7 @@ export const Params: FunctionComponent<Props> = ({ navigation }) => {
             }
         });
     }, [])
-    
+
     return(
         <View style={styles.container}>
                 {
@@ -32,11 +38,14 @@ export const Params: FunctionComponent<Props> = ({ navigation }) => {
                     <View style={styles.content}>
                         <View style={styles.loginBloc}>
                             <Text style={styles.username}>{userdata?.user.username}</Text>
-                            <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false)}}>
+                            <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false);}}>
+                                <Text style={styles.buttonText}>Déconnexion</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.button} onPress={() => {AsyncStorage.removeItem('@UserData'); setIsLogged(false);}}>
                                 <Text style={styles.buttonText}>Déconnexion</Text>
                             </TouchableOpacity>
                         </View>
-                    </View> 
+                    </View>
                     :
                     <View style={styles.content}>
                         <View style={styles.loginBloc}>

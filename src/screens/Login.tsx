@@ -1,35 +1,30 @@
+//imports composants React
+import React, { FunctionComponent, useState } from 'react';
+import { Text, View, Button, TextInput } from 'react-native';
+//imports navigation
 import { NavigationProp } from '@react-navigation/native';
-import {RootStackParamList} from '../RootStackParamList';
-import { Button, Text, TextInput, View } from 'react-native';
+import { RootStackParamList } from '../RootStackParamList';
+//Async Storage pour mise en cache des données utilisateur
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, {FunctionComponent, useState} from 'react';
-import styles from '../styles/login'
-import { LoginResponse } from '../types/User';
+//barre de menu
 import { Menubar } from './props/Menubar';
+//styles CSS
+import styles from '../styles/login';
+//constantes globales
+import { globalURL } from '../GlobalConsts';
+//types
+import { LoginResponse } from '../types/User';
 
 type Props = {
     navigation: NavigationProp<RootStackParamList, 'Login'>;
 }
 
-const login = (login: string, password: string): Promise<LoginResponse> => {
-  return fetch('https://strapi-genshin.latabledesattentistes.fr/api/auth/local', {
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify({
-      'identifier': login,
-      'password': password
-    })
-  })
-    .then(response => response.json())
-    .then((data: LoginResponse) => data);
-}
-
 export const Login: FunctionComponent<Props> = ({ navigation }) => {
+
     const [identifier, setIdentifier] = useState('');
     const [password, setPassword] = useState('');
 
+    //message d'alerte si erreur lors du login
     const [alert, setAlert] = useState(' ');
 
     const onPressCallback = () => {
@@ -49,7 +44,7 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
           const jsonValue = JSON.stringify(userdata);
           await AsyncStorage.setItem('@UserData', jsonValue);
         } catch (e) {
-          // saving error
+          console.log(e);
         }
     }
 
@@ -63,7 +58,23 @@ export const Login: FunctionComponent<Props> = ({ navigation }) => {
                 <Text style={styles.textAlert}>{alert}</Text>
                 <Button color={'#3867D6'} onPress={onPressCallback} title='Connexion' />
             </View>
+            
             <Menubar navigation={navigation}/>
         </View>
     );
 }
+
+const login = (login: string, password: string): Promise<LoginResponse> => {
+  return fetch(globalURL + '/auth/local', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({
+      'identifier': login,
+      'password': password
+    })
+  })
+    .then(response => response.json())
+    .then((data: LoginResponse) => data);
+};

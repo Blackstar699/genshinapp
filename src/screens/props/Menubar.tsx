@@ -1,8 +1,12 @@
-import { NavigationProp, useRoute } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent } from 'react';
-import {RootStackParamList} from '../../RootStackParamList';
 import { View } from 'react-native';
+//imports navigation
+import { NavigationProp, useRoute } from '@react-navigation/native';
+import { RootStackParamList } from '../../RootStackParamList';
+//package react-native-paper pour avoir des boutons avec des icônes
 import { IconButton } from 'react-native-paper';
+//styles CSS
 import styles from '../../styles/menubar';
 
 type Props = {

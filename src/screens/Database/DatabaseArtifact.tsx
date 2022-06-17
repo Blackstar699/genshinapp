@@ -1,9 +1,16 @@
-import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+//imports composants React
 import React, { FunctionComponent, useEffect, useState } from 'react';
-import { RootStackParamList } from '../../RootStackParamList';
 import { Text, View, ScrollView, Image } from 'react-native';
-import styles from '../../styles/databaseArtifact';
+//imports navigation
+import { NavigationProp, RouteProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../RootStackParamList';
+//barre de menu
 import { Menubar } from '../props/Menubar';
+//styles CSS
+import styles from '../../styles/databaseArtifact';
+//constantes globales
+import { images, globalURL, headers, GetColor } from '../../GlobalConsts';
+//types
 import { ArtifactSet } from '../../types/ArtifactSets';
 
 type Props = {
@@ -11,21 +18,17 @@ type Props = {
 }
 
 export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
-    const images = 'https://images.latabledesattentistes.fr/genshin/';
+
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const [isLoading, setLoading] = useState(true);
     const [artifact, setArtifact] = React.useState<ArtifactSet>();
 
     useEffect(() => {
-        fetch('https://strapi-genshin.latabledesattentistes.fr/api/artifact-sets/' + route.params.id,
+        fetch(globalURL + '/artifact-sets/' + route.params.id,
             {
                 method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjUyODc0NTM3LCJleHAiOjE2NTU0NjY1Mzd9.1QLHOdVcF--qS8ch_MiO-EB0sJM0JzrZt4SL0jGxnRE'
-                }
+                headers: headers
             }
         )
         .then((response) => response.json())
@@ -34,7 +37,7 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
         .finally(() => setLoading(false));
     }, []);
 
-    const color: string = GetColor(typeof artifact === 'undefined' ? 1 : artifact.data.attributes.RarityMax);
+    const color = GetColor(typeof artifact === 'undefined' ? 1 : artifact.data.attributes.RarityMax);
 
     return (
         <View style={styles.container}>
@@ -100,23 +103,3 @@ export const DatabaseArtifact: FunctionComponent<Props> = ({ route }) => {
         </View>
     );
 };
-
-const GetColor = (rarity: number) => {
-    let colors: string;
-
-    switch(rarity){
-        case 3:
-            colors = '#4A90A8';
-            break;
-        case 4:
-            colors = '#AC7FC0';
-            break;
-        case 5:
-            colors = '#D39B4F';
-            break;
-        default:
-            colors = '#ccc';
-    }
-
-    return colors;
-}

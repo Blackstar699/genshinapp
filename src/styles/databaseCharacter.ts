@@ -76,7 +76,7 @@ export default StyleSheet.create({
     },
 
     imageConstellation: {
-        width: '50%',
+        width: '40%',
         aspectRatio: 1 / 1,
     },
 

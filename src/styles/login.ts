@@ -31,11 +31,13 @@ export default StyleSheet.create({
 
     textInput: {
         color: '#fff',
-        borderWidth: 1,
-        borderColor: '#fff',
         width: '80%',
-        marginBottom: '6%',
         fontSize: 16,
+        backgroundColor: '#383838',
+        paddingVertical: '2%',
+        paddingLeft: '5%',
+        borderRadius: 20,
+        marginBottom: '6%',
     },
 
     textAlert: {
